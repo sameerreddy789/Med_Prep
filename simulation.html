@@ -14,21 +14,25 @@
 <body style="height: 100vh; display: flex; flex-direction: column;">
     <!-- Navbar -->
     <header class="glass-header">
-        <div class="container" style="display: flex; align-items: center;">
-            <div class="nav-logo">
-                🧠 MedVoice
-            </div>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 MedVoice</a>
             <nav class="nav-links">
                 <a href="index.html" class="nav-link">Dashboard</a>
                 <a href="studio.html" class="nav-link">Learn</a>
                 <a href="simulation.html" class="nav-link active">Clinical Sim</a>
             </nav>
-            <div style="margin-left: auto; display: flex; align-items: center; gap: 16px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
                 <span
                     style="padding: 6px 12px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-radius: 20px; font-size: 0.8rem; border: 1px solid rgba(239, 68, 68, 0.4); display: flex; align-items: center; gap: 6px;">
                     <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></span> Live
                 </span>
-                <button class="btn btn-glass">Profile</button>
+                <a href="profile.html" class="nav-profile-btn">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M20 21a8 8 0 0 0-16 0" />
+                    </svg>
+                    Profile
+                </a>
             </div>
         </div>
     </header>

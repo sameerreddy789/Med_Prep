@@ -13,18 +13,23 @@
 
 <body>
 
-    <!-- Header -->
+    <!-- Navbar -->
     <header class="glass-header">
-        <div class="container" style="display: flex; align-items: center; max-width: 100%;">
-            <div class="nav-logo">🧠 MedVoice</div>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 MedVoice</a>
             <nav class="nav-links">
                 <a href="index.html" class="nav-link">Dashboard</a>
                 <a href="studio.html" class="nav-link">Learn</a>
                 <a href="simulation.html" class="nav-link">Clinical Sim</a>
             </nav>
-            <div style="margin-left: auto;">
-                <span class="status-badge in-progress" style="font-size: 0.75rem;">👤 Profile</span>
-            </div>
+            <span class="nav-profile-btn"
+                style="border-color: var(--accent-primary); box-shadow: 0 0 10px rgba(14,165,233,0.2);">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M20 21a8 8 0 0 0-16 0" />
+                </svg>
+                Profile
+            </span>
         </div>
     </header>
 
