@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | MedVoice</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <div class="container" style="display: flex; align-items: center; max-width: 100%;">
+            <div class="nav-logo">🧠 MedVoice</div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Dashboard</a>
+                <a href="studio.html" class="nav-link">Learn</a>
+                <a href="simulation.html" class="nav-link">Clinical Sim</a>
+            </nav>
+            <div style="margin-left: 24px;">
+                <span class="status-badge in-progress" style="font-size: 0.75rem;">👤 Profile</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px; max-width: 1000px;">
+
+        <!-- Page Title -->
+        <div style="margin-bottom: 32px;">
+            <h1 style="margin-bottom: 8px;">Mission Control 🎯</h1>
+            <p>Your academic identity, syllabus roadmap, and achievements — all in one place.</p>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 320px 1fr; gap: 32px;">
+
+            <!-- LEFT: Identity & Stats -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+
+                <!-- Profile Card -->
+                <div class="glass-card" style="text-align: center; padding: 32px 24px;">
+                    <!-- Avatar -->
+                    <div
+                        style="width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 0 0 25px rgba(14, 165, 233, 0.3);">
+                        🩺
+                    </div>
+                    <h2 style="margin-bottom: 4px;" id="profile-name">Dr. Future</h2>
+                    <p style="font-size: 0.85rem; margin-bottom: 16px;" id="profile-school">2nd Year MBBS</p>
+
+                    <div
+                        style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;">
+                        <span class="status-badge in-progress">🌐 Hinglish</span>
+                        <span class="status-badge mastered">📅 5-Day Streak</span>
+                    </div>
+
+                    <button class="btn btn-glass" style="width: 100%; justify-content: center;"
+                        onclick="toggleEditProfile()">✏️ Edit Profile</button>
+
+                    <!-- Edit Form (Hidden by default) -->
+                    <div id="edit-profile-form" style="display: none; margin-top: 20px; text-align: left;">
+                        <div style="margin-bottom: 12px;">
+                            <label
+                                style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Name</label>
+                            <input type="text" id="input-name" value="Dr. Future"
+                                style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: var(--font-body); font-size: 0.9rem;">
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <label
+                                style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Year
+                                of Study</label>
+                            <select id="input-year"
+                                style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: var(--font-body);">
+                                <option>1st Year MBBS</option>
+                                <option selected>2nd Year MBBS</option>
+                                <option>3rd Year MBBS</option>
+                                <option>Final Year MBBS</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <label
+                                style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Preferred
+                                Language</label>
+                            <select id="input-language"
+                                style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: var(--font-body);">
+                                <option selected>Hinglish</option>
+                                <option>English</option>
+                                <option>Teluglish</option>
+                                <option>Tanglish</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%; justify-content: center;"
+                            onclick="saveProfile()">💾 Save Changes</button>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="glass-card">
+                    <h4 style="margin-bottom: 16px;">📊 Overview</h4>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.85rem; color: var(--text-secondary);">Topics Mastered</span>
+                            <span style="font-weight: 700; color: #4ade80;">14 / 150</span>
+                        </div>
+                        <div class="progress-bar-bg" style="height: 8px;">
+                            <div class="progress-bar-fill" style="width: 9%;"></div>
+                        </div>
+
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                            <span style="font-size: 0.85rem; color: var(--text-secondary);">Subjects Active</span>
+                            <span style="font-weight: 700;">3</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.85rem; color: var(--text-secondary);">Avg. Quiz Score</span>
+                            <span style="font-weight: 700; color: var(--accent-primary);">76%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.85rem; color: var(--text-secondary);">Best Streak</span>
+                            <span style="font-weight: 700; color: var(--accent-warning);">🔥 12 Days</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement Vault -->
+                <div class="glass-card">
+                    <h4 style="margin-bottom: 16px;">🏆 Achievements</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <div title="Completed Upper Limb"
+                            style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(34, 197, 94, 0.1)); border: 1px solid rgba(74, 222, 128, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">
+                            💪</div>
+                        <div title="5-Day Streak"
+                            style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.1)); border: 1px solid rgba(249, 115, 22, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">
+                            🔥</div>
+                        <div title="First Quiz Passed"
+                            style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(37, 99, 235, 0.1)); border: 1px solid rgba(14, 165, 233, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">
+                            🎯</div>
+                        <!-- Locked badges -->
+                        <div title="Thorax Master (Locked)"
+                            style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; opacity: 0.3; cursor: default;">
+                            🫀</div>
+                        <div title="100 Topics (Locked)"
+                            style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; opacity: 0.3; cursor: default;">
+                            💯</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Syllabus Tree -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+
+                <!-- Syllabus Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2>📚 My Syllabus</h2>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-glass" onclick="toggleBulkPaste()">📋 Bulk Paste</button>
+                        <button class="btn btn-primary" onclick="addSubject()">+ Add Subject</button>
+                    </div>
+                </div>
+
+                <!-- Bulk Paste Area (Hidden) -->
+                <div id="bulk-paste-area" style="display: none;">
+                    <div class="glass-card">
+                        <h4 style="margin-bottom: 8px;">📋 Paste Your Syllabus</h4>
+                        <p style="font-size: 0.8rem; margin-bottom: 12px;">Paste raw syllabus text below. Our AI will
+                            parse it into Subjects → Units → Topics automatically.</p>
+                        <textarea id="bulk-paste-input"
+                            placeholder="e.g.&#10;Anatomy&#10;  Unit 1: Upper Limb&#10;    - Brachial Plexus&#10;    - Axillary Artery&#10;  Unit 2: Thorax&#10;    - Heart ..."
+                            style="width: 100%; height: 120px; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: var(--font-body); font-size: 0.85rem; resize: vertical;"></textarea>
+                        <div style="display: flex; gap: 8px; margin-top: 12px;">
+                            <button class="btn btn-primary" onclick="parseBulkSyllabus()">🧠 AI Parse</button>
+                            <button class="btn btn-glass" onclick="toggleBulkPaste()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subject Cards -->
+                <div id="syllabus-tree" style="display: flex; flex-direction: column; gap: 16px;">
+
+                    <!-- Subject 1: Anatomy (Demo) -->
+                    <div class="glass-card subject-card">
+                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                            <!-- Progress Ring -->
+                            <div style="position: relative; width: 56px; height: 56px; flex-shrink: 0;">
+                                <svg viewBox="0 0 36 36" style="transform: rotate(-90deg);">
+                                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.06)"
+                                        stroke-width="3" />
+                                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--accent-secondary)"
+                                        stroke-width="3" stroke-dasharray="45, 100" stroke-linecap="round" />
+                                </svg>
+                                <span
+                                    style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">45%</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <h3 style="margin-bottom: 2px;">Anatomy</h3>
+                                <p style="font-size: 0.8rem;">3 Units · 12 Topics</p>
+                            </div>
+                            <span class="status-badge in-progress">In Progress</span>
+                        </div>
+
+                        <!-- Unit Accordion -->
+                        <div
+                            style="display: flex; flex-direction: column; gap: 8px; padding-left: 8px; border-left: 2px solid rgba(255,255,255,0.06);">
+
+                            <!-- Unit 1 -->
+                            <div style="padding: 12px; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <h4 style="font-size: 0.9rem;">Unit 1: Upper Limb</h4>
+                                    <span class="status-badge mastered" style="font-size: 0.65rem;">MASTERED</span>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; background: rgba(0,0,0,0.15); border-radius: 6px; font-size: 0.8rem;">
+                                        <span>Brachial Plexus</span>
+                                        <span style="color: #4ade80; font-weight: 600;">90%</span>
+                                    </div>
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; background: rgba(0,0,0,0.15); border-radius: 6px; font-size: 0.8rem;">
+                                        <span>Axillary Artery</span>
+                                        <span style="color: #4ade80; font-weight: 600;">85%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Unit 2 -->
+                            <div
+                                style="padding: 12px; background: rgba(14, 165, 233, 0.06); border-radius: 10px; border: 1px solid rgba(14, 165, 233, 0.15);">
+                                <div
+                                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <h4 style="font-size: 0.9rem;">Unit 2: Thorax</h4>
+                                    <span class="status-badge in-progress" style="font-size: 0.65rem;">LEARNING</span>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 6px;">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; background: rgba(0,0,0,0.15); border-radius: 6px; font-size: 0.8rem;">
+                                        <span>Heart - Cardiac Cycle</span>
+                                        <span style="color: var(--accent-warning); font-weight: 600;">60%</span>
+                                    </div>
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; background: rgba(0,0,0,0.15); border-radius: 6px; font-size: 0.8rem;">
+                                        <span>Lungs & Mediastinum</span>
+                                        <span style="color: var(--text-muted);">—</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Unit 3 (Locked) -->
+                            <div
+                                style="padding: 12px; background: rgba(0,0,0,0.15); border-radius: 10px; opacity: 0.4;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h4 style="font-size: 0.9rem;">Unit 3: Abdomen</h4>
+                                    <span class="status-badge locked" style="font-size: 0.65rem;">LOCKED</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subject 2: Physiology -->
+                    <div class="glass-card subject-card">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="position: relative; width: 56px; height: 56px; flex-shrink: 0;">
+                                <svg viewBox="0 0 36 36" style="transform: rotate(-90deg);">
+                                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.06)"
+                                        stroke-width="3" />
+                                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--accent-primary)"
+                                        stroke-width="3" stroke-dasharray="20, 100" stroke-linecap="round" />
+                                </svg>
+                                <span
+                                    style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">20%</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <h3 style="margin-bottom: 2px;">Physiology</h3>
+                                <p style="font-size: 0.8rem;">2 Units · 8 Topics</p>
+                            </div>
+                            <span class="status-badge in-progress">In Progress</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject 3: Biochemistry (Locked) -->
+                    <div class="glass-card subject-card" style="opacity: 0.5;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="position: relative; width: 56px; height: 56px; flex-shrink: 0;">
+                                <svg viewBox="0 0 36 36" style="transform: rotate(-90deg);">
+                                    <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.06)"
+                                        stroke-width="3" />
+                                </svg>
+                                <span
+                                    style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">0%</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <h3 style="margin-bottom: 2px;">Biochemistry</h3>
+                                <p style="font-size: 0.8rem;">4 Units · 20 Topics</p>
+                            </div>
+                            <span class="status-badge locked">Locked</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // --- Profile Interactions ---
+        function toggleEditProfile() {
+            const form = document.getElementById('edit-profile-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function saveProfile() {
+            const name = document.getElementById('input-name').value;
+            const year = document.getElementById('input-year').value;
+            const lang = document.getElementById('input-language').value;
+
+            document.getElementById('profile-name').textContent = name;
+            document.getElementById('profile-school').textContent = year;
+
+            // Persist to localStorage
+            const profile = { name, year, language: lang };
+            localStorage.setItem('medvoice_user', JSON.stringify(profile));
+
+            toggleEditProfile();
+            console.log('✅ Profile saved:', profile);
+        }
+
+        function toggleBulkPaste() {
+            const area = document.getElementById('bulk-paste-area');
+            area.style.display = area.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function addSubject() {
+            const name = prompt('Enter Subject Name (e.g., Pharmacology):');
+            if (!name) return;
+
+            const tree = document.getElementById('syllabus-tree');
+            const card = document.createElement('div');
+            card.className = 'glass-card subject-card';
+            card.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="position: relative; width: 56px; height: 56px; flex-shrink: 0;">
+                        <svg viewBox="0 0 36 36" style="transform: rotate(-90deg);">
+                            <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="3" />
+                        </svg>
+                        <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;">0%</span>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="margin-bottom: 2px;">${name}</h3>
+                        <p style="font-size: 0.8rem;">0 Units · 0 Topics</p>
+                    </div>
+                    <span class="status-badge locked">New</span>
+                </div>
+            `;
+            tree.appendChild(card);
+        }
+
+        async function parseBulkSyllabus() {
+            const text = document.getElementById('bulk-paste-input').value;
+            if (!text.trim()) return;
+            console.log('🧠 Sending syllabus to AI for parsing...', text);
+            // In production, call geminiService.parseSyllabus(text)
+            alert('AI Parse triggered! Check console for details. (Mock Mode)');
+            toggleBulkPaste();
+        }
+
+        // Load saved profile on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('medvoice_user');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.getElementById('profile-name').textContent = data.name || 'Dr. Future';
+                document.getElementById('profile-school').textContent = data.year || '2nd Year MBBS';
+                document.getElementById('input-name').value = data.name || '';
+                document.getElementById('input-year').value = data.year || '2nd Year MBBS';
+                document.getElementById('input-language').value = data.language || 'Hinglish';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
