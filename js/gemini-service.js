@@ -51,17 +51,27 @@ class GeminiService {
         const prompt = PROMPT_TEMPLATES.CONTENT_GENERATION(topic, subject, mode, context);
         await this._callAPI(prompt);
 
-        // Mock Response based on Mode
-        let script = "";
-        if (mode.includes("Story")) {
-            script = "Imagine karo heart ek water pump hai... (Hinglish Story Mode)";
-        } else if (mode.includes("Exam")) {
-            script = "High Yield Points:\n- S1 sound: Mitral/Tricuspid closure\n- S2 sound: Aortic/Pulmonic closure";
-        }
+        // Mock Response based on Mode and New Protocol
+        const isStory = mode.toLowerCase().includes("story");
 
         return {
-            script: script,
-            mermaidCode: `graph TD\nA[${topic}] --> B(Concept 1)\nA --> C(Concept 2)`
+            mermaid_code: `graph TD
+A[${topic}] --> B(Diastole)
+A --> C(Systole)
+B --> B1[Isovolumetric Relaxation]
+B --> B2[Ventricular Filling]
+C --> C1[Isovolumetric Contraction]
+C --> C2[Ejection]
+style A fill:#0ea5e9,stroke:#fff,stroke-width:2px`,
+            audio_script: isStory
+                ? "Imagine karo heart ek water pump hai. Jab ye relax karta hai (Diastole), tab blood fill hota hai like a tank..."
+                : "The cardiac cycle consists of two major phases: Diastole (relaxation) and Systole (contraction). Key events include...",
+            takeaways: [
+                { term: "Diastole", definition: "Relaxation phase where ventricles fill." },
+                { term: "Systole", definition: "Contraction phase where blood is ejected." },
+                { term: "Stroke Volume", definition: "Volume of blood pumped per beat." }
+            ],
+            quiz_preview: "Ready to test your knowledge on Pressure-Volume loops?"
         };
     }
 

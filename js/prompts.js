@@ -13,11 +13,11 @@ You are "MedVoice AI," a specialized Medical Education Architect. Your goal is t
 `;
 
 export const PROMPT_TEMPLATES = {
-    /**
-     * Protocol 1: Syllabus Parsing
-     * Input: Raw Text/PDF content
-     */
-    SYLLABUS_PARSING: (rawText) => `
+  /**
+   * Protocol 1: Syllabus Parsing
+   * Input: Raw Text/PDF content
+   */
+  SYLLABUS_PARSING: (rawText) => `
 ${MEDVOICE_SYSTEM_ROLE}
 # TASK: Syllabus Parsing
 Parse the following syllabus content into a strict JSON structure:
@@ -32,30 +32,39 @@ CONTENT:
 ${rawText}
 `,
 
-    /**
-     * Protocol 2: Content Generation
-     * Input: Topic, Mode (Story/Exam/Patient), Resource Context
-     */
-    CONTENT_GENERATION: (topic, subject, mode, resourceContext) => `
+  /**
+   * Protocol 2: Content Generation (Dual-Stream)
+   * Input: Topic, Mode (Story/Exam/Patient), Resource Context
+   */
+  CONTENT_GENERATION: (topic, subject, mode, resourceContext) => `
 ${MEDVOICE_SYSTEM_ROLE}
 # TASK: Content Generation
-Act as MedVoice. I am studying [${topic}] from the subject [${subject}]. 
-Based on the uploaded resource context: "${resourceContext}", 
-generate a [${mode}] audio script and a Mermaid.js concept map. 
-Ensure the tone is empathetic and clear.
+Act as the MedVoice Content Engine. Process the topic [${topic}] from [${subject}].
+Context: "${resourceContext}"
 
-MODES:
-- Story Mode (Hinglish): Use analogies (e.g., Heart ~ water pump). Conversational Hindi/English mix.
-- Exam Mode (English): Professional, high-yield bullet points for boards.
-- Patient Mode: Simple analogies for non-medics.
-- Visual Map: Output Mermaid.js flowchart code.
+# OUTPUT REQUIREMENTS
+1. **Visual**: Create a Mermaid.js 'graph TD' flowchart breaking down the topic.
+2. **Audio**: Write a script based on [${mode}] mode.
+    - Story Mode: Hinglish, analogies.
+    - Exam Mode: Professional English, high-yield.
+3. **Takeaways**: Extract 3-5 micro-concepts.
+
+# OUTPUT FORMAT (STRICT JSON)
+{
+  "mermaid_code": "graph TD; A[Node] --> B[Node]; ...",
+  "audio_script": "Full text for TTS...",
+  "takeaways": [
+    {"term": "Concept Name", "definition": "Simple explanation"}
+  ],
+  "quiz_preview": "Hook for upcoming test."
+}
 `,
 
-    /**
-     * Protocol 3: Mastery Gate (Quiz)
-     * Input: Topic
-     */
-    QUIZ_GENERATION: (topic) => `
+  /**
+   * Protocol 3: Mastery Gate (Quiz)
+   * Input: Topic
+   */
+  QUIZ_GENERATION: (topic) => `
 ${MEDVOICE_SYSTEM_ROLE}
 # TASK: Quiz Generation
 Generate 10 high-yield MCQs for [${topic}]. 
@@ -64,11 +73,11 @@ Tag each question with a sub-concept (e.g., 'Pathophysiology', 'Treatment', 'Ana
 Format: JSON array with "question", "options", "correct_index", and "concept_tag".
 `,
 
-    /**
-     * Protocol 4: Remediation Logic
-     * Input: Score, Topic, Missed Tags
-     */
-    REMEDIATION: (score, topic, missedTags) => `
+  /**
+   * Protocol 4: Remediation Logic
+   * Input: Score, Topic, Missed Tags
+   */
+  REMEDIATION: (score, topic, missedTags) => `
 ${MEDVOICE_SYSTEM_ROLE}
 # TASK: Remediation
 I scored [${score}/10] on [${topic}]. 
