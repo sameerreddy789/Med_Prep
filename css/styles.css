@@ -597,11 +597,10 @@ a:hover {
 }
 
 .subject-name {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -646,7 +645,8 @@ a:hover {
 }
 
 .tile.not-started {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.06);
 }
 
 /* Rich Tooltip */
@@ -672,10 +672,11 @@ a:hover {
 
 /* Legend Dot */
 .legend-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     display: inline-block;
+    flex-shrink: 0;
 }
 
 /* --- 14. RESPONSIVE --- */

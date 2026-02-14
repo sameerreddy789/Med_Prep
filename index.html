@@ -31,7 +31,7 @@
         </div>
     </header>
 
-    <main style="width: 95%; max-width: 1400px; margin: 0 auto; padding: 40px 0;">
+    <main style="width: 95%; max-width: 1400px; margin: 0 auto; padding: 40px 0 60px;">
 
         <!-- Greeting -->
         <section style="margin-bottom: 32px;">
@@ -40,10 +40,11 @@
         </section>
 
         <!-- ===== TOP ROW: Hero + Sidebar ===== -->
-        <div style="display: grid; grid-template-columns: 1fr 340px; gap: 2rem; margin-bottom: 2rem;">
+        <div
+            style="display: grid; grid-template-columns: 1fr 380px; gap: 2rem; margin-bottom: 2rem; align-items: stretch;">
 
             <!-- LEFT: Active Subject Tracker (Curriculum Hero) -->
-            <div class="glass-card" style="padding: 32px; display: flex; align-items: center; gap: 32px;">
+            <div class="glass-card" style="padding: 36px; display: flex; align-items: center; gap: 36px;">
                 <!-- Large Progress Ring -->
                 <div style="position: relative; width: 140px; height: 140px; flex-shrink: 0;">
                     <svg viewBox="0 0 36 36" style="transform: rotate(-90deg); width: 100%; height: 100%;">
@@ -76,7 +77,7 @@
             <div style="display: flex; flex-direction: column; gap: 16px;">
 
                 <!-- Quick Stats Row -->
-                <div class="glass-card" style="padding: 20px;">
+                <div class="glass-card" style="padding: 24px;">
                     <div style="display: flex; justify-content: space-around; text-align: center;">
                         <div>
                             <div style="font-size: 1.6rem; font-weight: 700; color: #4ade80;" id="stat-mastered">—</div>
@@ -104,10 +105,10 @@
 
                 <!-- Dynamic Daily Mix -->
                 <div class="glass-card"
-                    style="padding: 20px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(20, 184, 166, 0.08)); flex: 1;">
+                    style="padding: 24px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(20, 184, 166, 0.08)); flex: 1; display: flex; flex-direction: column;">
                     <h4 style="margin-bottom: 10px;">📅 Daily Review Mix</h4>
                     <div id="daily-mix-list"
-                        style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
+                        style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; flex: 1;">
                         <!-- Populated by JS -->
                     </div>
                     <a href="studio.html" class="btn btn-primary"
@@ -118,7 +119,7 @@
         </div>
 
         <!-- ===== BOTTOM ROW: Heatmap + Focus Areas ===== -->
-        <div style="display: grid; grid-template-columns: 1fr 400px; gap: 2rem;">
+        <div style="display: grid; grid-template-columns: 1fr 380px; gap: 2rem; align-items: start;">
 
             <!-- LEFT: Mastery Matrix -->
             <div class="glass-card" style="padding: 2.5rem;">
@@ -131,7 +132,7 @@
                 <div
                     style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
                     <p style="font-size: 0.75rem; color: #64748b;" id="heatmap-summary">Loading...</p>
-                    <div style="display: flex; gap: 14px; align-items: center; font-size: 0.7rem; color: #64748b;">
+                    <div style="display: flex; gap: 16px; align-items: center; font-size: 0.7rem; color: #64748b;">
                         <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot"
                                 style="background: #14b8a6;"></span>Mastered</span>
                         <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot"
@@ -146,10 +147,10 @@
             <div style="display: flex; flex-direction: column; gap: 16px;">
 
                 <!-- Focus Areas -->
-                <div class="glass-card" style="padding: 20px;">
+                <div class="glass-card" style="padding: 24px;">
                     <h4 style="margin-bottom: 12px;">🎯 Focus Areas</h4>
                     <p style="font-size: 0.8rem; margin-bottom: 12px;">Topics below the 80% mastery gate.</p>
-                    <div id="focus-areas" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <div id="focus-areas" style="display: flex; flex-wrap: wrap; gap: 8px;">
                         <!-- Populated by JS -->
                     </div>
                 </div>
