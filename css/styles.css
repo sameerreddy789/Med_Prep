@@ -586,3 +586,10 @@ a:hover {
         gap: var(--space-md);
     }
 }
+
+/* Profile page: stack columns at 1024px */
+@media (max-width: 1024px) {
+    main>div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+}
