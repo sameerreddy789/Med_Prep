@@ -10,10 +10,9 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <!-- Using mermaid logic for concept map visualization -->
 </head>
 
-<body style="overflow: hidden;"> <!-- Studio is a full-screen app feel -->
+<body style="overflow: hidden; background: #0f172a;">
 
     <!-- Navbar -->
     <header class="glass-header">
@@ -26,131 +25,152 @@
             </nav>
             <div style="display: flex; gap: 10px; align-items: center;">
                 <button class="btn btn-glass" style="padding: 6px 12px; font-size: 0.8rem;">📂 Notes</button>
-                <button class="btn btn-glass" style="padding: 6px 12px; font-size: 0.8rem;">💾 Save</button>
+                <button class="btn btn-glass" style="padding: 6px 12px; font-size: 0.8rem;">💾 Save Session</button>
             </div>
         </div>
     </header>
 
-    <div style="display: grid; grid-template-columns: 1fr 400px; height: calc(100vh - 60px);">
+    <!-- Main Studio Grid -->
+    <div class="studio-grid">
 
-        <!-- LEFT: Visual Board (Concept Map) -->
-        <div style="position: relative; overflow: auto; background: rgba(0,0,0,0.2);">
-            <div id="visual-map-container"
-                style="padding: 40px; min-height: 100%; display: flex; align-items: center; justify-content: center;">
-                <!-- Placeholder for D3.js or Mermaid map -->
-                <div id="map-placeholder" class="glass-panel"
-                    style="padding: 32px; text-align: center; max-width: 400px;">
-                    <div style="font-size: 3rem; margin-bottom: 16px; opacity: 0.5;">🗺️</div>
-                    <h3 style="margin-bottom: 8px;">No Topic Selected</h3>
-                    <p style="font-size: 0.9rem; margin-bottom: 24px;">Select a topic from your syllabus to generate a
-                        visual map.</p>
-                    <button class="btn btn-primary">Open Syllabus</button>
-                </div>
-
-                <div id="mermaid-output" class="mermaid" style="display: none;">
-                    graph TD
-                    A[Cardiac Cycle] --> B(Diastole)
-                    A --> C(Systole)
-                    B --> B1[Isovolumetric Relaxation]
-                    B --> B2[Ventricular Filling]
-                    C --> C1[Isovolumetric Contraction]
-                    C --> C2[Ejection]
-                </div>
-            </div>
-        </div>
-
-        <!-- Floating Tooltip / Action Bar -->
-        <div
-            style="position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; gap: 16px;">
-            <button class="btn btn-glass" style="backdrop-filter: blur(20px); background: rgba(0,0,0,0.6);">🔍 Zoom
-                In</button>
-            <button class="btn btn-glass" style="backdrop-filter: blur(20px); background: rgba(0,0,0,0.6);">🧠
-                Generate Mnemonic</button>
-            <button class="btn btn-glass" style="backdrop-filter: blur(20px); background: rgba(0,0,0,0.6);">🖼️ Show
-                Diagrams</button>
-        </div>
-    </div>
-
-    <!-- RIGHT: Audio Tutor & Chat -->
-    <div class="glass-panel"
-        style="border-radius: 0; border-right: none; border-top: none; border-bottom: none; display: flex; flex-direction: column;">
-
-        <!-- Audio Player Section -->
-        <div style="padding: 24px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                <h3 style="font-size: 1.1rem;">🎧 Audio Tutor</h3>
-                <select
-                    style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 4px 8px; border-radius: 8px;">
-                    <option>Story Mode (Hindi)</option>
-                    <option>Exam Mode (English)</option>
-                    <option>Patient Mode</option>
-                </select>
+        <!-- LEFT: Clinical Context Sidebar -->
+        <aside class="studio-col-left">
+            <div style="padding: 24px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <h3
+                    style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px;">
+                    Current Topic</h3>
+                <h2 style="font-size: 1.2rem; color: #fff;" id="topic-title">Select a Topic</h2>
             </div>
 
-            <!-- Waveform Vis -->
-            <div
-                style="height: 60px; background: rgba(0,0,0,0.2); border-radius: 12px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;">
-                <div style="display: flex; gap: 3px; align-items: center; height: 100%;">
-                    <!-- Bars generated by CSS/JS ideally -->
-                    <div style="width: 4px; height: 40%; background: var(--accent-primary);"></div>
-                    <div style="width: 4px; height: 70%; background: var(--accent-primary);"></div>
-                    <div style="width: 4px; height: 30%; background: var(--accent-primary);"></div>
-                    <div style="width: 4px; height: 60%; background: var(--accent-primary);"></div>
-                    <div style="width: 4px; height: 80%; background: var(--accent-primary);"></div>
-                    <div style="width: 4px; height: 40%; background: var(--accent-primary);"></div>
-                    <div style="width: 4px; height: 70%; background: var(--accent-primary);"></div>
-                    <div style="width: 4px; height: 30%; background: var(--accent-primary);"></div>
-                    <div style="width: 4px; height: 60%; background: var(--accent-primary);"></div>
-                    <div style="width: 4px; height: 80%; background: var(--accent-primary);"></div>
+            <div style="flex: 1; overflow-y: auto; padding: 24px;">
+                <h4
+                    style="font-size: 0.85rem; color: var(--accent-secondary); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">
+                    High-Yield Takeaways</h4>
+                <ul id="takeaways-list"
+                    style="list-style: none; display: flex; flex-direction: column; gap: 16px; opacity: 0.5;">
+                    <li style="font-size: 0.9rem; color: var(--text-muted); font-style: italic;">Select a topic to
+                        generate key takeaways.</li>
+                </ul>
+
+                <div style="margin-top: 32px;">
+                    <h4
+                        style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">
+                        Reference Gallery</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; opacity: 0.5;">
+                        <div style="aspect-ratio: 1; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
+                        <div style="aspect-ratio: 1; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CENTER: Concept Map & Action Bar -->
+        <main class="studio-col-center" id="center-panel">
+
+            <!-- Empty State / Quick Picker -->
+            <div id="quick-picker" style="text-align: center; max-width: 440px; width: 90%;">
+                <div
+                    style="font-size: 4rem; margin-bottom: 16px; opacity: 0.8; filter: drop-shadow(0 0 20px rgba(14,165,233,0.3));">
+                    🧬</div>
+                <h1 style="margin-bottom: 12px;">Study Studio</h1>
+                <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 32px; line-height: 1.6;">
+                    Select a topic to generate an interactive Concept Map, Audio Tutor, and Clinical Context.
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+                    <button class="btn btn-primary" onclick="window.location.href='profile.html'"
+                        style="width: 100%; max-width: 280px; justify-content: center; padding: 14px;">
+                        📂 Browse Syllabus
+                    </button>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">or jump back in:</p>
+                    <button class="btn btn-glass"
+                        style="width: 100%; max-width: 280px; justify-content: left; padding: 12px 16px;"
+                        onclick="loadDemoTopic()">
+                        <span style="margin-right: 8px;">🔁</span> [Anatomy] Brachial Plexus
+                    </button>
                 </div>
             </div>
 
-            <!-- Controls -->
-            <div style="display: flex; justify-content: center; gap: 24px; align-items: center;">
-                <button class="btn btn-glass"
-                    style="border-radius: 50%; width: 40px; height: 40px; padding: 0; display: flex; justify-content: center; align-items: center;">⏪</button>
-                <button class="btn btn-primary"
-                    style="border-radius: 50%; width: 56px; height: 56px; padding: 0; display: flex; justify-content: center; align-items: center; font-size: 1.5rem;">▶</button>
-                <button class="btn btn-glass"
-                    style="border-radius: 50%; width: 40px; height: 40px; padding: 0; display: flex; justify-content: center; align-items: center;">⏩</button>
+            <!-- Concept Map (Initially Hidden) -->
+            <div id="concept-map-wrapper" style="display: none; width: 100%; height: 100%; position: relative;">
+                <div id="mermaid-container"
+                    style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                    <!-- Mermaid Graph Rendered Here -->
+                </div>
+
+                <!-- Floating Action Bar -->
+                <div class="floating-action-bar">
+                    <button class="fab-btn">🔍 Zoom</button>
+                    <button class="fab-btn">🧠 Mnemonic</button>
+                    <button class="fab-btn">👶 Explain Like I'm 5</button>
+                </div>
             </div>
-        </div>
+        </main>
 
-        <!-- Transcript / Key Points -->
-        <div style="flex: 1; overflow-y: auto; padding: 24px;">
-            <h4
-                style="font-size: 0.9rem; color: var(--accent-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">
-                Key Takeaways</h4>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px;">
-                <li
-                    style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--accent-secondary);">
-                    <strong style="display: block; color: white; margin-bottom: 4px;">Atrial Systole</strong>
-                    Atria contract, pushing remaining 30% of blood into ventricles.
-                </li>
-                <li
-                    style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border-left: 3px solid var(--text-secondary);">
-                    <strong style="display: block; color: white; margin-bottom: 4px;">Isovolumetric
-                        Contraction</strong>
-                    Ventricles start contracting. All valves closed. Pressure builds up rapidly.
-                </li>
-            </ul>
-        </div>
+        <!-- RIGHT: Audio Tutor -->
+        <aside class="studio-col-right">
+            <!-- Audio Header -->
+            <div style="padding: 24px 24px 0; display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 1.2rem;">🎧</span>
+                    <h3 style="font-size: 1rem;">Audio Tutor</h3>
+                </div>
+                <div
+                    style="display: flex; gap: 2px; background: rgba(0,0,0,0.3); padding: 2px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                    <button class="btn-glass"
+                        style="padding: 4px 8px; font-size: 0.7rem; background: rgba(255,255,255,0.1);">Story</button>
+                    <button class="btn-glass" style="padding: 4px 8px; font-size: 0.7rem; border: none;">Facts</button>
+                    <button class="btn-glass"
+                        style="padding: 4px 8px; font-size: 0.7rem; border: none;">Patient</button>
+                </div>
+            </div>
 
-        <!-- Chat / Quiz Action -->
-        <div style="padding: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
-            <button class="btn btn-glass" style="width: 100%; justify-content: space-between;">
-                <span>Wait, explain "Isovolumetric" again?</span>
-                <span>🎤</span>
-            </button>
-        </div>
+            <!-- Visualizer -->
+            <div style="padding: 24px;">
+                <div class="audio-visualizer">
+                    <div class="vis-bar" style="animation-delay: 0.1s"></div>
+                    <div class="vis-bar" style="animation-delay: 0.2s"></div>
+                    <div class="vis-bar" style="animation-delay: 0.3s"></div>
+                    <div class="vis-bar" style="animation-delay: 0.4s"></div>
+                    <div class="vis-bar" style="animation-delay: 0.5s"></div>
+                    <div class="vis-bar" style="animation-delay: 0.4s"></div>
+                    <div class="vis-bar" style="animation-delay: 0.3s"></div>
+                    <div class="vis-bar" style="animation-delay: 0.2s"></div>
+                    <div class="vis-bar" style="animation-delay: 0.1s"></div>
+                </div>
 
-    </div>
+                <!-- Play Controls -->
+                <div style="display: flex; justify-content: center; gap: 24px; margin-top: 16px; align-items: center;">
+                    <button class="btn-glass"
+                        style="width: 36px; height: 36px; border-radius: 50%; padding:0; display:grid; place-items:center;">⏪</button>
+                    <button class="btn-primary"
+                        style="width: 52px; height: 52px; border-radius: 50%; padding:0; display:grid; place-items:center; font-size: 1.2rem; box-shadow: 0 0 20px rgba(14,165,233,0.3);">▶</button>
+                    <button class="btn-glass"
+                        style="width: 36px; height: 36px; border-radius: 50%; padding:0; display:grid; place-items:center;">⏩</button>
+                </div>
+            </div>
+
+            <!-- Transcript -->
+            <div style="flex: 1; overflow-y: auto; padding: 0 24px 24px; border-top: 1px solid rgba(255,255,255,0.05);">
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 16px; line-height: 1.6;">
+                    Transcript will appear here once audio starts playing...
+                </p>
+            </div>
+
+            <!-- Chat Input -->
+            <div style="padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2);">
+                <div style="position: relative;">
+                    <input type="text" placeholder="Ask a follow-up question..."
+                        style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 10px 40px 10px 12px; border-radius: 8px; color: white; font-size: 0.85rem;">
+                    <span
+                        style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); opacity: 0.5;">🎤</span>
+                </div>
+            </div>
+        </aside>
+
     </div>
 
     <script type="module" src="js/studio.js"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
-    </script>
 </body>
 
 </html>
