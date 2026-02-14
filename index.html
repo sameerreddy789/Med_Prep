@@ -120,26 +120,24 @@
         <!-- ===== BOTTOM ROW: Heatmap + Focus Areas ===== -->
         <div style="display: grid; grid-template-columns: 1fr 340px; gap: 2rem;">
 
-            <!-- LEFT: Mastery Heatmap -->
-            <div class="glass-card" style="padding: 24px;">
-                <h3 style="margin-bottom: 16px;">🗺️ Mastery Heatmap</h3>
+            <!-- LEFT: Mastery Matrix -->
+            <div class="glass-card" style="padding: 2.5rem;">
+                <h3 style="margin-bottom: 24px;">🗺️ Mastery Matrix</h3>
 
                 <!-- Subject-grouped rows rendered by JS -->
-                <div id="heatmap-grid" style="display: flex; flex-direction: column; gap: 12px;"></div>
+                <div id="mastery-matrix" class="mastery-matrix"></div>
 
-                <!-- Summary + Legend at bottom -->
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
-                    <p style="font-size: 0.75rem; color: var(--text-muted);" id="heatmap-summary">Loading...</p>
-                    <div
-                        style="display: flex; gap: 12px; align-items: center; font-size: 0.65rem; color: var(--text-muted);">
-                        <span style="display: flex; align-items: center; gap: 3px;"><span
-                                style="width: 10px; height: 10px; border-radius: 2px; background: #14b8a6;"></span>Mastered</span>
-                        <span style="display: flex; align-items: center; gap: 3px;"><span
-                                style="width: 10px; height: 10px; border-radius: 2px; background: #0ea5e9;"></span>In
-                            Progress</span>
-                        <span style="display: flex; align-items: center; gap: 3px;"><span
-                                style="width: 10px; height: 10px; border-radius: 2px; background: rgba(255,255,255,0.05);"></span>Not
-                            Started</span>
+                <!-- Footer: Summary (left) + Legend (right) -->
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
+                    <p style="font-size: 0.75rem; color: #64748b;" id="heatmap-summary">Loading...</p>
+                    <div style="display: flex; gap: 14px; align-items: center; font-size: 0.7rem; color: #64748b;">
+                        <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot"
+                                style="background: #14b8a6;"></span>Mastered</span>
+                        <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot"
+                                style="background: #0ea5e9;"></span>In Progress</span>
+                        <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot"
+                                style="background: rgba(255,255,255,0.04);"></span>Not Started</span>
                     </div>
                 </div>
             </div>
@@ -277,51 +275,52 @@
                 mixList.innerHTML = '<p style="font-size:0.8rem; color:var(--text-muted);">No reviews due today! 🎉</p>';
             }
 
-            // ===== Mastery Heatmap (Subject-Grouped) =====
-            const heatmap = document.getElementById('heatmap-grid');
+            // ===== Mastery Matrix (Subject-Grouped) =====
+            const matrix = document.getElementById('mastery-matrix');
             curriculum.forEach(sub => {
-                const topics = sub.units.flatMap(u => u.topics);
-                if (topics.length === 0) return;
+                const topicsWithMeta = [];
+                sub.units.forEach(u => {
+                    u.topics.forEach(t => {
+                        topicsWithMeta.push({ ...t, unit: u.unit_name, subject: sub.subject });
+                    });
+                });
+                if (topicsWithMeta.length === 0) return;
 
+                // Subject Row
                 const row = document.createElement('div');
-                row.style.cssText = 'display: flex; align-items: center; gap: 12px;';
+                row.className = 'subject-row';
 
                 // Subject label
                 const label = document.createElement('div');
-                label.style.cssText = 'width: 90px; flex-shrink: 0; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
+                label.className = 'subject-name';
                 label.textContent = sub.subject;
                 row.appendChild(label);
 
                 // Tiles grid
                 const tilesWrap = document.createElement('div');
-                tilesWrap.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fill, minmax(18px, 1fr)); gap: 4px; flex: 1;';
+                tilesWrap.className = 'heatmap-grid';
 
-                topics.forEach(topic => {
+                topicsWithMeta.forEach(topic => {
                     const cell = document.createElement('div');
-                    cell.className = 'heatmap-tile';
-                    cell.setAttribute('data-tooltip', topic.title);
+                    cell.className = 'tile';
+
+                    // Rich tooltip: [Subject] Unit: Topic – Score%
+                    const scoreText = topic.best_score > 0 ? ` – ${topic.best_score}%` : '';
+                    cell.setAttribute('data-tooltip', `[${topic.subject}] ${topic.unit}: ${topic.title}${scoreText}`);
 
                     if (topic.status === 'Mastered') {
-                        cell.classList.add('tile-mastered');
+                        cell.classList.add('mastered');
                     } else if (topic.status === 'In-Progress') {
-                        cell.classList.add('tile-progress');
+                        cell.classList.add('in-progress');
                     } else {
-                        cell.classList.add('tile-locked');
+                        cell.classList.add('not-started');
                     }
 
                     tilesWrap.appendChild(cell);
                 });
 
-                // Pad with empty cells for visual density (min 12 per row)
-                const pad = Math.max(0, 12 - topics.length);
-                for (let i = 0; i < pad; i++) {
-                    const empty = document.createElement('div');
-                    empty.className = 'heatmap-tile tile-empty';
-                    tilesWrap.appendChild(empty);
-                }
-
                 row.appendChild(tilesWrap);
-                heatmap.appendChild(row);
+                matrix.appendChild(row);
             });
 
             document.getElementById('heatmap-summary').textContent =

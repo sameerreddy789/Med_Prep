@@ -578,57 +578,104 @@ a:hover {
     box-shadow: inset 0 0 30px rgba(14, 165, 233, 0.05);
 }
 
-/* --- 13. MASTERY HEATMAP TILES --- */
-.heatmap-tile {
-    width: 18px;
-    height: 18px;
-    border-radius: 3px;
+/* --- 13. MASTERY MATRIX --- */
+
+/* Container */
+.mastery-matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+/* Subject Row: label | tiles */
+.subject-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: center;
+    gap: 20px;
+}
+
+.subject-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Tile Grid */
+.heatmap-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Individual Tile */
+.tile {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     cursor: pointer;
     position: relative;
-    transition: all 0.3s ease;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.2s ease;
 }
 
-.heatmap-tile:hover {
-    transform: scale(1.3);
-    z-index: 2;
+.tile:hover {
+    transform: scale(1.25);
+    z-index: 10;
 }
 
-.tile-mastered {
+/* Neon State Colors */
+.tile.mastered {
     background: #14b8a6;
-    box-shadow: 0 0 6px rgba(20, 184, 166, 0.4);
+    border-color: rgba(20, 184, 166, 0.4);
+    box-shadow: 0 0 12px rgba(20, 184, 166, 0.3);
 }
 
-.tile-progress {
+.tile.in-progress {
     background: #0ea5e9;
-    box-shadow: 0 0 4px rgba(14, 165, 233, 0.3);
+    border-color: rgba(14, 165, 233, 0.3);
+    box-shadow: 0 0 6px rgba(14, 165, 233, 0.2);
 }
 
-.tile-locked {
-    background: rgba(255, 255, 255, 0.05);
+.tile.not-started {
+    background: rgba(255, 255, 255, 0.04);
 }
 
-.tile-empty {
-    background: rgba(255, 255, 255, 0.02);
-    cursor: default;
-}
-
-/* Tooltip */
-.heatmap-tile[data-tooltip]:hover::after {
+/* Rich Tooltip */
+.tile[data-tooltip]:hover::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: calc(100% + 6px);
+    bottom: calc(100% + 8px);
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: white;
-    font-size: 0.65rem;
-    padding: 4px 8px;
-    border-radius: 6px;
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e2e8f0;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 8px;
     white-space: nowrap;
     pointer-events: none;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.01em;
+}
+
+/* Legend Dot */
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 /* --- 14. RESPONSIVE --- */
