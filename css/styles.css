@@ -584,16 +584,16 @@ a:hover {
 .mastery-matrix {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
     width: 100%;
 }
 
 /* Subject Row: label | tiles */
 .subject-row {
     display: grid;
-    grid-template-columns: 140px 1fr;
+    grid-template-columns: 120px 1fr;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
 }
 
 .subject-name {
@@ -611,13 +611,13 @@ a:hover {
 .heatmap-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
 }
 
 /* Individual Tile */
 .tile {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.05);
