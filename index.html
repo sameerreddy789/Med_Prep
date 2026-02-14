@@ -122,25 +122,26 @@
 
             <!-- LEFT: Mastery Heatmap -->
             <div class="glass-card" style="padding: 24px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                    <h3>🗺️ Mastery Heatmap</h3>
+                <h3 style="margin-bottom: 16px;">🗺️ Mastery Heatmap</h3>
+
+                <!-- Subject-grouped rows rendered by JS -->
+                <div id="heatmap-grid" style="display: flex; flex-direction: column; gap: 12px;"></div>
+
+                <!-- Summary + Legend at bottom -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px;">
+                    <p style="font-size: 0.75rem; color: var(--text-muted);" id="heatmap-summary">Loading...</p>
                     <div
-                        style="display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--text-muted);">
-                        <span style="display: flex; align-items: center; gap: 4px;"><span
+                        style="display: flex; gap: 12px; align-items: center; font-size: 0.65rem; color: var(--text-muted);">
+                        <span style="display: flex; align-items: center; gap: 3px;"><span
                                 style="width: 10px; height: 10px; border-radius: 2px; background: #14b8a6;"></span>Mastered</span>
-                        <span style="display: flex; align-items: center; gap: 4px;"><span
+                        <span style="display: flex; align-items: center; gap: 3px;"><span
                                 style="width: 10px; height: 10px; border-radius: 2px; background: #0ea5e9;"></span>In
                             Progress</span>
-                        <span style="display: flex; align-items: center; gap: 4px;"><span
-                                style="width: 10px; height: 10px; border-radius: 2px; background: rgba(255,255,255,0.06);"></span>Not
+                        <span style="display: flex; align-items: center; gap: 3px;"><span
+                                style="width: 10px; height: 10px; border-radius: 2px; background: rgba(255,255,255,0.05);"></span>Not
                             Started</span>
                     </div>
                 </div>
-                <div id="heatmap-grid" style="display: flex; flex-wrap: wrap; gap: 4px;">
-                    <!-- Populated by JS -->
-                </div>
-                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 12px;" id="heatmap-summary">
-                    Loading...</p>
             </div>
 
             <!-- RIGHT: Focus Areas + Quick Ingestion -->
@@ -276,39 +277,55 @@
                 mixList.innerHTML = '<p style="font-size:0.8rem; color:var(--text-muted);">No reviews due today! 🎉</p>';
             }
 
-            // ===== Mastery Heatmap =====
+            // ===== Mastery Heatmap (Subject-Grouped) =====
             const heatmap = document.getElementById('heatmap-grid');
-            allTopics.forEach(topic => {
-                const cell = document.createElement('div');
-                cell.title = topic.title;
-                cell.style.cssText = 'width:16px; height:16px; border-radius:3px; cursor:pointer; transition: transform 0.2s, box-shadow 0.2s;';
+            curriculum.forEach(sub => {
+                const topics = sub.units.flatMap(u => u.topics);
+                if (topics.length === 0) return;
 
-                if (topic.status === 'Mastered') {
-                    cell.style.background = '#14b8a6';
-                    cell.style.boxShadow = '0 0 6px rgba(20, 184, 166, 0.4)';
-                } else if (topic.status === 'In-Progress') {
-                    cell.style.background = '#0ea5e9';
-                    cell.style.boxShadow = '0 0 4px rgba(14, 165, 233, 0.3)';
-                } else {
-                    cell.style.background = 'rgba(255,255,255,0.06)';
+                const row = document.createElement('div');
+                row.style.cssText = 'display: flex; align-items: center; gap: 12px;';
+
+                // Subject label
+                const label = document.createElement('div');
+                label.style.cssText = 'width: 90px; flex-shrink: 0; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
+                label.textContent = sub.subject;
+                row.appendChild(label);
+
+                // Tiles grid
+                const tilesWrap = document.createElement('div');
+                tilesWrap.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fill, minmax(18px, 1fr)); gap: 4px; flex: 1;';
+
+                topics.forEach(topic => {
+                    const cell = document.createElement('div');
+                    cell.className = 'heatmap-tile';
+                    cell.setAttribute('data-tooltip', topic.title);
+
+                    if (topic.status === 'Mastered') {
+                        cell.classList.add('tile-mastered');
+                    } else if (topic.status === 'In-Progress') {
+                        cell.classList.add('tile-progress');
+                    } else {
+                        cell.classList.add('tile-locked');
+                    }
+
+                    tilesWrap.appendChild(cell);
+                });
+
+                // Pad with empty cells for visual density (min 12 per row)
+                const pad = Math.max(0, 12 - topics.length);
+                for (let i = 0; i < pad; i++) {
+                    const empty = document.createElement('div');
+                    empty.className = 'heatmap-tile tile-empty';
+                    tilesWrap.appendChild(empty);
                 }
 
-                cell.addEventListener('mouseenter', () => { cell.style.transform = 'scale(1.5)'; });
-                cell.addEventListener('mouseleave', () => { cell.style.transform = 'scale(1)'; });
-
-                heatmap.appendChild(cell);
+                row.appendChild(tilesWrap);
+                heatmap.appendChild(row);
             });
 
-            // Add empty cells to fill the grid (min 30 cells for visual density)
-            const remaining = Math.max(0, 40 - allTopics.length);
-            for (let i = 0; i < remaining; i++) {
-                const cell = document.createElement('div');
-                cell.style.cssText = 'width:16px; height:16px; border-radius:3px; background:rgba(255,255,255,0.03);';
-                heatmap.appendChild(cell);
-            }
-
             document.getElementById('heatmap-summary').textContent =
-                `${mastered.length} mastered · ${inProgress.length} in progress · ${locked.length} not started — across ${curriculum.length} subjects`;
+                `${mastered.length} mastered · ${inProgress.length} in progress · ${locked.length} not started`;
 
             // ===== Focus Areas (topics under 80%) =====
             const focusDiv = document.getElementById('focus-areas');
