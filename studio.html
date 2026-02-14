@@ -15,20 +15,20 @@
 
 <body style="overflow: hidden;"> <!-- Studio is a full-screen app feel -->
 
-    <!-- Compact Header -->
-    <div class="nav-logo">
-        🧠 MedVoice
-    </div>
-    <nav class="nav-links">
-        <a href="index.html" class="nav-link">Dashboard</a>
-        <a href="studio.html" class="nav-link active">Learn</a>
-        <a href="simulation.html" class="nav-link">Clinical Sim</a>
-    </nav>
-    <div style="margin-left: auto; display: flex; gap: 12px;">
-        <button class="btn btn-glass" style="padding: 8px 16px; font-size: 0.9rem;">📂 View Notes</button>
-        <button class="btn btn-glass" style="padding: 8px 16px; font-size: 0.9rem;">💾 Save Progress</button>
-    </div>
-    </div>
+    <!-- Navbar -->
+    <header class="glass-header">
+        <div class="container" style="display: flex; align-items: center; max-width: 100%;">
+            <div class="nav-logo">🧠 MedVoice</div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Dashboard</a>
+                <a href="studio.html" class="nav-link active">Learn</a>
+                <a href="simulation.html" class="nav-link">Clinical Sim</a>
+            </nav>
+            <div style="margin-left: 24px; display: flex; gap: 12px;">
+                <button class="btn btn-glass" style="padding: 6px 12px; font-size: 0.8rem;">📂 Notes</button>
+                <button class="btn btn-glass" style="padding: 6px 12px; font-size: 0.8rem;">💾 Save</button>
+            </div>
+        </div>
     </header>
 
     <div style="display: grid; grid-template-columns: 1fr 400px; height: calc(100vh - 60px);">

@@ -298,6 +298,9 @@ a:hover {
     cursor: pointer;
     transition: transform 0.2s ease;
     text-decoration: none;
+    margin-right: auto;
+    /* Push everything else to the right */
+    flex-shrink: 0;
 }
 
 .nav-logo:hover {
@@ -308,7 +311,6 @@ a:hover {
 .nav-links {
     display: flex;
     gap: var(--space-xl);
-    margin-left: auto;
 }
 
 .nav-link {
