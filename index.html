@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedVoice - Your Intelligent Medical Study Companion</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="glass-header">
+        <div class="container" style="display: flex; align-items: center;">
+            <div class="nav-logo">
+                🧠 MedVoice
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link active">Dashboard</a>
+                <a href="studio.html" class="nav-link">Study Studio</a>
+                <a href="simulation.html" class="nav-link">Exam Arena</a>
+            </nav>
+            <div style="margin-left: 24px;">
+                <button class="btn btn-glass">Profile</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px;">
+        <!-- Greeting Section -->
+        <section style="margin-bottom: 40px;">
+            <h1 style="margin-bottom: 10px;">Hello, Dr. Future 🩺</h1>
+            <p style="font-size: 1.1rem;">Ready to simplify complex concepts today?</p>
+        </section>
+
+        <div class="grid grid-2" style="grid-template-columns: 2fr 1fr;">
+
+            <!-- Main Content: Upload & Quick Actions -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+
+                <!-- Quick Upload -->
+                <div class="glass-panel" style="padding: 32px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h2>📥 Quick Ingestion</h2>
+                        <span class="btn btn-glass" style="font-size: 0.8rem; padding: 6px 12px;">Supported: PDF, PPT,
+                            IMG</span>
+                    </div>
+
+                    <div class="upload-zone" id="drop-zone">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">📄</div>
+                        <h3 style="margin-bottom: 8px;">Drop your lecture notes here</h3>
+                        <p>We'll convert them into Audio Lessons & Mind Maps instantly.</p>
+                        <button class="btn btn-primary mt-4">Browse Files</button>
+                    </div>
+                </div>
+
+                <!-- Continue Learning -->
+                <div class="glass-panel" style="padding: 32px;">
+                    <h3 class="mb-4">▶️ Continue Learning</h3>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <!-- Card 1 -->
+                        <div
+                            style="display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; cursor: pointer; transition: background 0.2s;">
+                            <div
+                                style="width: 50px; height: 50px; background: rgba(14, 165, 233, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                                ❤️</div>
+                            <div style="flex: 1;">
+                                <h4 style="font-size: 1rem;">Cardiac Cycle Mechanics</h4>
+                                <p style="font-size: 0.85rem;">Left off at: Ventricular Systole (04:12)</p>
+                            </div>
+                            <button class="btn btn-glass" style="padding: 8px;"><span
+                                    style="font-size: 1.2rem;">▶</span></button>
+                        </div>
+                        <!-- Card 2 -->
+                        <div
+                            style="display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; cursor: pointer; transition: background 0.2s;">
+                            <div
+                                style="width: 50px; height: 50px; background: rgba(20, 184, 166, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                                🧠</div>
+                            <div style="flex: 1;">
+                                <h4 style="font-size: 1rem;">Cranial Nerves (Mnemonics)</h4>
+                                <p style="font-size: 0.85rem;">Review due: Today</p>
+                            </div>
+                            <button class="btn btn-glass" style="padding: 8px;"><span
+                                    style="font-size: 1.2rem;">⚡</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar: Weakness Radar & Daily Mix -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+
+                <!-- Weakness Radar -->
+                <div class="glass-panel" style="padding: 24px;">
+                    <h3 class="mb-4">🎯 Focus Areas</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 16px;">Based on your quiz performance.</p>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span
+                            style="padding: 6px 12px; border-radius: 20px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; font-size: 0.85rem; border: 1px solid rgba(239, 68, 68, 0.3);">Bio-Chemistry</span>
+                        <span
+                            style="padding: 6px 12px; border-radius: 20px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; font-size: 0.85rem; border: 1px solid rgba(239, 68, 68, 0.3);">Pharmacology</span>
+                        <span
+                            style="padding: 6px 12px; border-radius: 20px; background: rgba(34, 197, 94, 0.2); color: #86efac; font-size: 0.85rem; border: 1px solid rgba(34, 197, 94, 0.3);">Anatomy</span>
+                    </div>
+
+                    <div style="margin-top: 24px; text-align: center;">
+                        <div
+                            style="width: 150px; height: 150px; border-radius: 50%; border: 10px solid rgba(255,255,255,0.05); margin: 0 auto; position: relative; display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; font-weight: 700;">82%</div>
+                                <div style="font-size: 0.7rem; color: var(--text-secondary);">Retention Rate</div>
+                            </div>
+                            <!-- Mock Progress Ring -->
+                            <svg
+                                style="position: absolute; top: -10px; left: -10px; width: 150px; height: 150px; transform: rotate(-90deg);">
+                                <circle cx="75" cy="75" r="70" stroke="var(--accent-secondary)" stroke-width="10"
+                                    fill="transparent" stroke-dasharray="440" stroke-dashoffset="80" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Mix -->
+                <div class="glass-panel"
+                    style="padding: 24px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(20, 184, 166, 0.1));">
+                    <h3 class="mb-4">📅 Daily Mix</h3>
+                    <p style="font-size: 0.9rem;">3 topics scheduled for Spaced Repetition.</p>
+                    <button class="btn btn-primary mt-4" style="width: 100%; justify-content: center;">Start Daily
+                        Review</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
