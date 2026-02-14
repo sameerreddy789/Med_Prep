@@ -31,117 +31,322 @@
         </div>
     </header>
 
-    <main class="container" style="padding-top: 40px;">
-        <!-- Greeting Section -->
-        <section style="margin-bottom: 40px;">
-            <h1 style="margin-bottom: 10px;">Hello, Dr. Future 🩺</h1>
-            <p style="font-size: 1.1rem;">Ready to simplify complex concepts today?</p>
+    <main style="width: 95%; max-width: 1400px; margin: 0 auto; padding: 40px 0;">
+
+        <!-- Greeting -->
+        <section style="margin-bottom: 32px;">
+            <h1 style="margin-bottom: 6px;" id="greeting">Hello, Dr. Future 🩺</h1>
+            <p style="font-size: 1rem;" id="greeting-sub">Ready to simplify complex concepts today?</p>
         </section>
 
-        <div class="grid grid-2" style="grid-template-columns: 2fr 1fr;">
+        <!-- ===== TOP ROW: Hero + Sidebar ===== -->
+        <div style="display: grid; grid-template-columns: 1fr 340px; gap: 2rem; margin-bottom: 2rem;">
 
-            <!-- Main Content: Upload & Quick Actions -->
-            <div style="display: flex; flex-direction: column; gap: 24px;">
-
-                <!-- Quick Upload -->
-                <div class="glass-panel" style="padding: 32px;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-                        <h2>📥 Quick Ingestion</h2>
-                        <span class="btn btn-glass" style="font-size: 0.8rem; padding: 6px 12px;">Supported: PDF, PPT,
-                            IMG</span>
-                    </div>
-
-                    <div class="upload-zone" id="drop-zone">
-                        <div style="font-size: 3rem; margin-bottom: 16px;">📄</div>
-                        <h3 style="margin-bottom: 8px;">Drop your lecture notes here</h3>
-                        <p>We'll convert them into Audio Lessons & Mind Maps instantly.</p>
-                        <button class="btn btn-primary mt-4">Browse Files</button>
-                    </div>
+            <!-- LEFT: Active Subject Tracker (Curriculum Hero) -->
+            <div class="glass-card" style="padding: 32px; display: flex; align-items: center; gap: 32px;">
+                <!-- Large Progress Ring -->
+                <div style="position: relative; width: 140px; height: 140px; flex-shrink: 0;">
+                    <svg viewBox="0 0 36 36" style="transform: rotate(-90deg); width: 100%; height: 100%;">
+                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.06)"
+                            stroke-width="2.5" />
+                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0ea5e9" stroke-width="2.5" id="hero-ring"
+                            stroke-dasharray="0, 100" stroke-linecap="round"
+                            style="transition: stroke-dasharray 1s ease;" />
+                    </svg>
+                    <span
+                        style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700;"
+                        id="hero-pct">—</span>
                 </div>
-
-                <!-- Continue Learning -->
-                <div class="glass-panel" style="padding: 32px;">
-                    <h3 class="mb-4">▶️ Continue Learning</h3>
-                    <div style="display: flex; flex-direction: column; gap: 16px;">
-                        <!-- Card 1 -->
-                        <div
-                            style="display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; cursor: pointer; transition: background 0.2s;">
-                            <div
-                                style="width: 50px; height: 50px; background: rgba(14, 165, 233, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-                                ❤️</div>
-                            <div style="flex: 1;">
-                                <h4 style="font-size: 1rem;">Cardiac Cycle Mechanics</h4>
-                                <p style="font-size: 0.85rem;">Left off at: Ventricular Systole (04:12)</p>
-                            </div>
-                            <button class="btn btn-glass" style="padding: 8px;"><span
-                                    style="font-size: 1.2rem;">▶</span></button>
-                        </div>
-                        <!-- Card 2 -->
-                        <div
-                            style="display: flex; gap: 16px; align-items: center; background: rgba(255,255,255,0.03); padding: 16px; border-radius: 12px; cursor: pointer; transition: background 0.2s;">
-                            <div
-                                style="width: 50px; height: 50px; background: rgba(20, 184, 166, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-                                🧠</div>
-                            <div style="flex: 1;">
-                                <h4 style="font-size: 1rem;">Cranial Nerves (Mnemonics)</h4>
-                                <p style="font-size: 0.85rem;">Review due: Today</p>
-                            </div>
-                            <button class="btn btn-glass" style="padding: 8px;"><span
-                                    style="font-size: 1.2rem;">⚡</span></button>
-                        </div>
+                <!-- Info -->
+                <div style="flex: 1;">
+                    <p
+                        style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px;">
+                        Currently Studying</p>
+                    <h2 style="margin-bottom: 6px;" id="hero-subject">—</h2>
+                    <p style="font-size: 0.85rem; margin-bottom: 20px;" id="hero-detail">Loading curriculum data...</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="studio.html" class="btn btn-primary" style="padding: 10px 24px;">▶ Jump Back In</a>
+                        <a href="profile.html" class="btn btn-glass"
+                            style="padding: 10px 20px; text-decoration: none;">📚 View Full Syllabus</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Sidebar: Weakness Radar & Daily Mix -->
-            <div style="display: flex; flex-direction: column; gap: 24px;">
+            <!-- RIGHT: Stats + Daily Mix -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
 
-                <!-- Weakness Radar -->
-                <div class="glass-panel" style="padding: 24px;">
-                    <h3 class="mb-4">🎯 Focus Areas</h3>
-                    <p style="font-size: 0.9rem; margin-bottom: 16px;">Based on your quiz performance.</p>
-
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                        <span
-                            style="padding: 6px 12px; border-radius: 20px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; font-size: 0.85rem; border: 1px solid rgba(239, 68, 68, 0.3);">Bio-Chemistry</span>
-                        <span
-                            style="padding: 6px 12px; border-radius: 20px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; font-size: 0.85rem; border: 1px solid rgba(239, 68, 68, 0.3);">Pharmacology</span>
-                        <span
-                            style="padding: 6px 12px; border-radius: 20px; background: rgba(34, 197, 94, 0.2); color: #86efac; font-size: 0.85rem; border: 1px solid rgba(34, 197, 94, 0.3);">Anatomy</span>
-                    </div>
-
-                    <div style="margin-top: 24px; text-align: center;">
-                        <div
-                            style="width: 150px; height: 150px; border-radius: 50%; border: 10px solid rgba(255,255,255,0.05); margin: 0 auto; position: relative; display: flex; align-items: center; justify-content: center;">
-                            <div style="text-align: center;">
-                                <div style="font-size: 2rem; font-weight: 700;">82%</div>
-                                <div style="font-size: 0.7rem; color: var(--text-secondary);">Retention Rate</div>
-                            </div>
-                            <!-- Mock Progress Ring -->
-                            <svg
-                                style="position: absolute; top: -10px; left: -10px; width: 150px; height: 150px; transform: rotate(-90deg);">
-                                <circle cx="75" cy="75" r="70" stroke="var(--accent-secondary)" stroke-width="10"
-                                    fill="transparent" stroke-dasharray="440" stroke-dashoffset="80" />
-                            </svg>
+                <!-- Quick Stats Row -->
+                <div class="glass-card" style="padding: 20px;">
+                    <div style="display: flex; justify-content: space-around; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.6rem; font-weight: 700; color: #4ade80;" id="stat-mastered">—</div>
+                            <div
+                                style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">
+                                Mastered</div>
+                        </div>
+                        <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+                        <div>
+                            <div style="font-size: 1.6rem; font-weight: 700; color: var(--accent-primary);"
+                                id="stat-progress">—</div>
+                            <div
+                                style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">
+                                In Progress</div>
+                        </div>
+                        <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+                        <div>
+                            <div style="font-size: 1.6rem; font-weight: 700;" id="stat-subjects">—</div>
+                            <div
+                                style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">
+                                Subjects</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Daily Mix -->
-                <div class="glass-panel"
-                    style="padding: 24px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(20, 184, 166, 0.1));">
-                    <h3 class="mb-4">📅 Daily Mix</h3>
-                    <p style="font-size: 0.9rem;">3 topics scheduled for Spaced Repetition.</p>
-                    <button class="btn btn-primary mt-4" style="width: 100%; justify-content: center;">Start Daily
-                        Review</button>
+                <!-- Dynamic Daily Mix -->
+                <div class="glass-card"
+                    style="padding: 20px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(20, 184, 166, 0.08)); flex: 1;">
+                    <h4 style="margin-bottom: 10px;">📅 Daily Review Mix</h4>
+                    <div id="daily-mix-list"
+                        style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
+                        <!-- Populated by JS -->
+                    </div>
+                    <a href="studio.html" class="btn btn-primary"
+                        style="width: 100%; justify-content: center; padding: 10px; text-decoration: none;">Start
+                        Review</a>
                 </div>
             </div>
-
         </div>
+
+        <!-- ===== BOTTOM ROW: Heatmap + Focus Areas ===== -->
+        <div style="display: grid; grid-template-columns: 1fr 340px; gap: 2rem;">
+
+            <!-- LEFT: Mastery Heatmap -->
+            <div class="glass-card" style="padding: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3>🗺️ Mastery Heatmap</h3>
+                    <div
+                        style="display: flex; gap: 12px; align-items: center; font-size: 0.7rem; color: var(--text-muted);">
+                        <span style="display: flex; align-items: center; gap: 4px;"><span
+                                style="width: 10px; height: 10px; border-radius: 2px; background: #14b8a6;"></span>Mastered</span>
+                        <span style="display: flex; align-items: center; gap: 4px;"><span
+                                style="width: 10px; height: 10px; border-radius: 2px; background: #0ea5e9;"></span>In
+                            Progress</span>
+                        <span style="display: flex; align-items: center; gap: 4px;"><span
+                                style="width: 10px; height: 10px; border-radius: 2px; background: rgba(255,255,255,0.06);"></span>Not
+                            Started</span>
+                    </div>
+                </div>
+                <div id="heatmap-grid" style="display: flex; flex-wrap: wrap; gap: 4px;">
+                    <!-- Populated by JS -->
+                </div>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 12px;" id="heatmap-summary">
+                    Loading...</p>
+            </div>
+
+            <!-- RIGHT: Focus Areas + Quick Ingestion -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+
+                <!-- Focus Areas -->
+                <div class="glass-card" style="padding: 20px;">
+                    <h4 style="margin-bottom: 12px;">🎯 Focus Areas</h4>
+                    <p style="font-size: 0.8rem; margin-bottom: 12px;">Topics below the 80% mastery gate.</p>
+                    <div id="focus-areas" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Compact Quick Upload -->
+                <div class="glass-card" style="padding: 20px; flex: 1;">
+                    <h4 style="margin-bottom: 10px;">📥 Quick Upload</h4>
+                    <div style="border: 2px dashed rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: border-color 0.3s;"
+                        id="drop-zone">
+                        <div style="font-size: 1.5rem; margin-bottom: 6px;">📄</div>
+                        <p style="font-size: 0.8rem;">Drop lecture notes (PDF, PPT, IMG)</p>
+                        <button class="btn btn-glass mt-4" style="padding: 6px 16px; font-size: 0.8rem;">Browse</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
-    <script type="module" src="js/app.js"></script>
+    <script>
+        // ===== LOAD CURRICULUM FROM LOCALSTORAGE =====
+        function loadCurriculum() {
+            const stored = localStorage.getItem('medvoice_curriculum');
+            if (stored) return JSON.parse(stored);
+            // Default data matches profile.html
+            return [
+                {
+                    subject: "Anatomy", progress: 45, avgScore: 72,
+                    units: [
+                        {
+                            unit_name: "Upper Limb", topics: [
+                                { title: "Brachial Plexus", status: "Mastered", best_score: 90 },
+                                { title: "Axillary Artery", status: "Mastered", best_score: 85 }
+                            ]
+                        },
+                        {
+                            unit_name: "Thorax", topics: [
+                                { title: "Cardiac Cycle", status: "In-Progress", best_score: 60 },
+                                { title: "Lungs & Mediastinum", status: "Locked", best_score: 0 }
+                            ]
+                        },
+                        {
+                            unit_name: "Abdomen", topics: [
+                                { title: "GI Tract Overview", status: "Locked", best_score: 0 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    subject: "Physiology", progress: 20, avgScore: 50,
+                    units: [
+                        {
+                            unit_name: "General Physiology", topics: [
+                                { title: "Cell Membrane Transport", status: "In-Progress", best_score: 50 }
+                            ]
+                        }
+                    ]
+                }
+            ];
+        }
+
+        function init() {
+            const curriculum = loadCurriculum();
+            const allTopics = curriculum.flatMap(s => s.units.flatMap(u => u.topics));
+            const mastered = allTopics.filter(t => t.status === 'Mastered');
+            const inProgress = allTopics.filter(t => t.status === 'In-Progress');
+            const locked = allTopics.filter(t => t.status === 'Locked');
+
+            // ===== Greeting =====
+            const saved = localStorage.getItem('medvoice_user');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.getElementById('greeting').textContent = `Hello, ${data.name || 'Dr. Future'} 🩺`;
+            }
+
+            // ===== Curriculum Hero =====
+            // Find most active subject (most in-progress topics)
+            let activeSubject = curriculum[0];
+            let maxActive = 0;
+            curriculum.forEach(sub => {
+                const active = sub.units.reduce((s, u) => s + u.topics.filter(t => t.status === 'In-Progress').length, 0);
+                if (active > maxActive) { maxActive = active; activeSubject = sub; }
+            });
+
+            if (activeSubject) {
+                const total = activeSubject.units.reduce((s, u) => s + u.topics.length, 0);
+                const done = activeSubject.units.reduce((s, u) => s + u.topics.filter(t => t.status === 'Mastered').length, 0);
+                const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+                const unitCount = activeSubject.units.length;
+
+                document.getElementById('hero-subject').textContent = activeSubject.subject;
+                document.getElementById('hero-pct').textContent = pct + '%';
+                document.getElementById('hero-detail').textContent = `${done}/${total} topics mastered · ${unitCount} units`;
+                document.getElementById('hero-ring').setAttribute('stroke-dasharray', `${pct}, 100`);
+
+                if (pct >= 80) {
+                    document.getElementById('hero-ring').setAttribute('stroke', '#14b8a6');
+                }
+            }
+
+            // ===== Stats =====
+            document.getElementById('stat-mastered').textContent = mastered.length;
+            document.getElementById('stat-progress').textContent = inProgress.length;
+            document.getElementById('stat-subjects').textContent = curriculum.length;
+
+            // ===== Daily Mix (topics due for review) =====
+            const mixList = document.getElementById('daily-mix-list');
+            const reviewTopics = inProgress.slice(0, 3);
+            if (reviewTopics.length > 0) {
+                const totalMin = reviewTopics.length * 5;
+                reviewTopics.forEach(t => {
+                    const div = document.createElement('div');
+                    div.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:6px 10px; background:rgba(0,0,0,0.15); border-radius:8px; font-size:0.8rem;';
+                    div.innerHTML = `<span>${t.title}</span><span style="color:#f59e0b; font-weight:600;">${t.best_score}%</span>`;
+                    mixList.appendChild(div);
+                });
+                // Add time estimate
+                const est = document.createElement('p');
+                est.style.cssText = 'font-size:0.75rem; color:var(--text-muted); margin-top:6px;';
+                est.textContent = `⏱ Est. ${totalMin} min total`;
+                mixList.after(est);
+            } else {
+                mixList.innerHTML = '<p style="font-size:0.8rem; color:var(--text-muted);">No reviews due today! 🎉</p>';
+            }
+
+            // ===== Mastery Heatmap =====
+            const heatmap = document.getElementById('heatmap-grid');
+            allTopics.forEach(topic => {
+                const cell = document.createElement('div');
+                cell.title = topic.title;
+                cell.style.cssText = 'width:16px; height:16px; border-radius:3px; cursor:pointer; transition: transform 0.2s, box-shadow 0.2s;';
+
+                if (topic.status === 'Mastered') {
+                    cell.style.background = '#14b8a6';
+                    cell.style.boxShadow = '0 0 6px rgba(20, 184, 166, 0.4)';
+                } else if (topic.status === 'In-Progress') {
+                    cell.style.background = '#0ea5e9';
+                    cell.style.boxShadow = '0 0 4px rgba(14, 165, 233, 0.3)';
+                } else {
+                    cell.style.background = 'rgba(255,255,255,0.06)';
+                }
+
+                cell.addEventListener('mouseenter', () => { cell.style.transform = 'scale(1.5)'; });
+                cell.addEventListener('mouseleave', () => { cell.style.transform = 'scale(1)'; });
+
+                heatmap.appendChild(cell);
+            });
+
+            // Add empty cells to fill the grid (min 30 cells for visual density)
+            const remaining = Math.max(0, 40 - allTopics.length);
+            for (let i = 0; i < remaining; i++) {
+                const cell = document.createElement('div');
+                cell.style.cssText = 'width:16px; height:16px; border-radius:3px; background:rgba(255,255,255,0.03);';
+                heatmap.appendChild(cell);
+            }
+
+            document.getElementById('heatmap-summary').textContent =
+                `${mastered.length} mastered · ${inProgress.length} in progress · ${locked.length} not started — across ${curriculum.length} subjects`;
+
+            // ===== Focus Areas (topics under 80%) =====
+            const focusDiv = document.getElementById('focus-areas');
+            const weakTopics = allTopics.filter(t => t.status === 'In-Progress' && t.best_score < 80 && t.best_score > 0);
+            const strongTopics = allTopics.filter(t => t.status === 'Mastered');
+
+            if (weakTopics.length === 0 && strongTopics.length === 0) {
+                focusDiv.innerHTML = '<p style="font-size:0.8rem; color:var(--text-muted);">Start learning to see focus areas.</p>';
+            } else {
+                weakTopics.forEach(t => {
+                    const tag = document.createElement('span');
+                    tag.style.cssText = 'padding:5px 10px; border-radius:16px; background:rgba(239,68,68,0.15); color:#fca5a5; font-size:0.75rem; border:1px solid rgba(239,68,68,0.25);';
+                    tag.textContent = t.title;
+                    focusDiv.appendChild(tag);
+                });
+                strongTopics.slice(0, 2).forEach(t => {
+                    const tag = document.createElement('span');
+                    tag.style.cssText = 'padding:5px 10px; border-radius:16px; background:rgba(34,197,94,0.15); color:#86efac; font-size:0.75rem; border:1px solid rgba(34,197,94,0.25);';
+                    tag.textContent = t.title;
+                    focusDiv.appendChild(tag);
+                });
+            }
+
+            // ===== Drop Zone hover =====
+            const dropZone = document.getElementById('drop-zone');
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = 'var(--accent-primary)';
+                dropZone.style.background = 'rgba(14,165,233,0.05)';
+            });
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.style.borderColor = 'rgba(255,255,255,0.08)';
+                dropZone.style.background = 'transparent';
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 
 </html>
