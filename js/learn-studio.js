@@ -57,13 +57,16 @@ window.loadDemoTopic = async function () {
     mapWrapper.style.display = 'block';
     topicTitle.textContent = "Brachial Plexus";
 
+    // Show loading spinner while Mermaid renders
+    mermaidContainer.innerHTML = '<div class="loading-overlay"><div class="spinner"></div><span>Generating concept map...</span></div>';
+
     try {
         const mermaid = await getMermaid();
         const { svg } = await mermaid.render('graphDiv', demoGraph);
         mermaidContainer.innerHTML = svg;
     } catch (e) {
         console.error('Mermaid render failed:', e);
-        mermaidContainer.innerHTML = '<p style="color:red">Error loading map</p>';
+        mermaidContainer.innerHTML = '<p style="color:#fca5a5">Error loading map. Try refreshing.</p>';
     }
 
     takeawaysList.style.opacity = '1';
@@ -174,13 +177,15 @@ if (followUpInput) {
 const headerBtns = document.querySelectorAll('.glass-header .btn-glass');
 headerBtns.forEach(btn => {
     if (btn.textContent.includes('Notes')) {
-        btn.addEventListener('click', () => alert('📂 Notes feature coming soon! Your takeaways will be saved here.'));
+        btn.addEventListener('click', () => {
+            if (typeof window.showToast === 'function') window.showToast('📂 Notes feature coming soon!', 'info');
+        });
     }
     if (btn.textContent.includes('Save')) {
         btn.addEventListener('click', () => {
             const session = { topic: topicTitle.textContent, mode: currentMode, timestamp: new Date().toISOString() };
             localStorage.setItem('medvoice_last_session', JSON.stringify(session));
-            alert('💾 Session saved!');
+            if (typeof window.showToast === 'function') window.showToast('💾 Session saved!', 'success');
         });
     }
 });
@@ -292,6 +297,31 @@ function showQuizResult() {
         '<button class="btn btn-primary" onclick="document.getElementById(\'quiz-modal\').style.display=\'none\'">Close</button>' +
         (passed ? '' : '<button class="btn btn-glass" onclick="startQuiz()">Retry</button>') +
         '</div>';
+
+    // Persist quiz score to curriculum in localStorage
+    var currentTopic = topicTitle.textContent;
+    if (currentTopic && currentTopic !== 'Select a Topic') {
+        var curriculum = window.safeJsonParse('medvoice_curriculum', []);
+        var updated = false;
+        curriculum.forEach(function(sub) {
+            sub.units.forEach(function(unit) {
+                unit.topics.forEach(function(t) {
+                    if (t.title === currentTopic) {
+                        t.best_score = Math.max(t.best_score || 0, pct);
+                        if (passed && t.status !== 'Mastered') t.status = 'Mastered';
+                        else if (!passed && t.status === 'Locked') t.status = 'In-Progress';
+                        updated = true;
+                    }
+                });
+            });
+            // Recalculate subject progress
+            var allTopics = sub.units.flatMap(function(u) { return u.topics; });
+            var mastered = allTopics.filter(function(t) { return t.status === 'Mastered'; }).length;
+            sub.progress = allTopics.length > 0 ? Math.round((mastered / allTopics.length) * 100) : 0;
+        });
+        if (updated) localStorage.setItem('medvoice_curriculum', JSON.stringify(curriculum));
+    }
+
     if (typeof window.showToast === 'function') {
         window.showToast(passed ? '🎉 Topic mastered!' : '📚 Review and try again', passed ? 'success' : 'warning');
     }

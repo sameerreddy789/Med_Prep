@@ -127,12 +127,25 @@ if (endSimBtn) {
             li.textContent = '✅ ' + li.textContent.replace(/^[✅⬜]\s*/, '');
         });
 
+        // Track simulation performance in localStorage
+        var simHistory = window.safeJsonParse('medvoice_sim_history', []);
+        simHistory.push({
+            patient: 'Mr. Sharma',
+            phase: currentPhase,
+            messagesExchanged: responseIndex,
+            completedAt: new Date().toISOString()
+        });
+        localStorage.setItem('medvoice_sim_history', JSON.stringify(simHistory));
+
         const endMsg = document.createElement('div');
         endMsg.style.cssText = 'text-align: center; padding: 24px; background: rgba(20,184,166,0.1); border: 1px solid rgba(20,184,166,0.3); border-radius: 12px;';
         endMsg.innerHTML = '<div style="font-size: 2rem; margin-bottom: 8px;">🏁</div>' +
             '<h3 style="margin-bottom: 4px;">Simulation Complete</h3>' +
-            '<p style="font-size: 0.85rem;">Great work, Doctor. Review your performance on the dashboard.</p>' +
-            '<a href="dashboard.html" class="btn btn-primary" style="margin-top: 16px; display: inline-flex; text-decoration: none;">Back to Dashboard</a>';
+            '<p style="font-size: 0.85rem; margin-bottom: 16px;">Great work, Doctor. You exchanged ' + responseIndex + ' messages and reached the ' + currentPhase + ' phase.</p>' +
+            '<div style="display: flex; gap: 8px; justify-content: center;">' +
+            '<a href="dashboard.html" class="btn btn-primary" style="display: inline-flex; text-decoration: none;">Back to Dashboard</a>' +
+            '<button class="btn btn-glass" id="restart-sim-btn">🔄 Restart</button>' +
+            '</div>';
         chatWindow.appendChild(endMsg);
         chatWindow.scrollTop = chatWindow.scrollHeight;
 
@@ -143,5 +156,12 @@ if (endSimBtn) {
 
         const liveIndicator = document.getElementById('live-indicator');
         if (liveIndicator) liveIndicator.style.display = 'none';
+
+        if (typeof window.showToast === 'function') window.showToast('🏁 Simulation complete!', 'success');
+
+        // Restart button handler
+        document.getElementById('restart-sim-btn').addEventListener('click', () => {
+            location.reload();
+        });
     });
 }

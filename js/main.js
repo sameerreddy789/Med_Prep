@@ -94,6 +94,7 @@ window.resetMedVoiceData = function() {
         localStorage.removeItem('medvoice_user');
         localStorage.removeItem('medvoice_settings');
         localStorage.removeItem('medvoice_last_session');
+        localStorage.removeItem('medvoice_sim_history');
         window.showToast('🗑️ All data cleared. Reloading...');
         setTimeout(function() { location.reload(); }, 1000);
     }

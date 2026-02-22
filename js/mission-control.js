@@ -257,6 +257,7 @@ function saveProfile() {
     const updated = Object.assign({}, existing, { name: name, year: year, language: lang });
     localStorage.setItem('medvoice_user', JSON.stringify(updated));
     toggleEditProfile();
+    if (typeof window.showToast === 'function') window.showToast('✅ Profile saved!', 'success');
 }
 
 // Close modal on backdrop click

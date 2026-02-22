@@ -59,6 +59,12 @@ function init() {
         est.className = 'mix-estimate';
         est.textContent = '⏱ Est. ' + (reviewTopics.length * 5) + ' min total';
         mixList.after(est);
+
+        // Update "Start Review" button to deep-link with first review topic
+        var startReviewBtn = mixList.parentElement.querySelector('.btn-primary');
+        if (startReviewBtn) {
+            startReviewBtn.href = 'learn.html?topic=' + encodeURIComponent(reviewTopics[0].title);
+        }
     } else {
         mixList.innerHTML = '<p class="text-muted-sm">No reviews due today! 🎉</p>';
     }
@@ -86,14 +92,21 @@ function init() {
         topicsWithMeta.forEach(function(topic) {
             var cell = document.createElement('div');
             cell.className = 'tile';
+            cell.setAttribute('tabindex', '0');
+            cell.setAttribute('role', 'button');
             var scoreText = topic.best_score > 0 ? ' – ' + topic.best_score + '%' : '';
             cell.setAttribute('data-tooltip', '[' + topic.subject + '] ' + topic.unit + ': ' + topic.title + scoreText);
+            cell.setAttribute('aria-label', topic.title + (scoreText ? scoreText : ' - Not started'));
             if (topic.status === 'Mastered') cell.classList.add('mastered');
             else if (topic.status === 'In-Progress') cell.classList.add('in-progress');
             else cell.classList.add('not-started');
-            // Click tile to deep-link to learn page
-            cell.addEventListener('click', function() {
+            // Click or Enter to deep-link to learn page
+            function navigateToTopic() {
                 window.location.href = 'learn.html?topic=' + encodeURIComponent(topic.title);
+            }
+            cell.addEventListener('click', navigateToTopic);
+            cell.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigateToTopic(); }
             });
             tilesWrap.appendChild(cell);
         });
