@@ -4,24 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MedVoice Study Studio - Interactive concept maps, audio tutor, and clinical context for medical learning.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
     <title>Study Studio | MedVoice</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" as="style">
     <link rel="stylesheet" href="css/styles.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </head>
 
-<body style="overflow: hidden; background: #0f172a;">
+<body style="background: #0f172a;">
 
     <!-- Navbar -->
     <header class="glass-header">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">🧠 MedVoice</a>
+            <a href="dashboard.html" class="nav-logo">🧠 MedVoice</a>
+            <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
             <nav class="nav-links">
-                <a href="index.html" class="nav-link">Dashboard</a>
-                <a href="studio.html" class="nav-link active">Learn</a>
-                <a href="simulation.html" class="nav-link">Clinical Sim</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="learn.html" class="nav-link active">Learn</a>
+                <a href="clinical-sim.html" class="nav-link">Clinical Sim</a>
             </nav>
             <div style="display: flex; gap: 10px; align-items: center;">
                 <button class="btn btn-glass" style="padding: 6px 12px; font-size: 0.8rem;">📂 Notes</button>
@@ -57,8 +60,14 @@
                         style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">
                         Reference Gallery</h4>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; opacity: 0.5;">
-                        <div style="aspect-ratio: 1; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
-                        <div style="aspect-ratio: 1; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
+                        <div style="aspect-ratio: 1; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 8px; text-align: center;">
+                            <span style="font-size: 1.5rem; margin-bottom: 4px;">🖼️</span>
+                            <span style="font-size: 0.65rem; color: var(--text-muted);">Diagrams</span>
+                        </div>
+                        <div style="aspect-ratio: 1; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 8px; text-align: center;">
+                            <span style="font-size: 1.5rem; margin-bottom: 4px;">🩻</span>
+                            <span style="font-size: 0.65rem; color: var(--text-muted);">X-Rays</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,7 +87,7 @@
                 </p>
 
                 <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
-                    <button class="btn btn-primary" onclick="window.location.href='profile.html'"
+                    <button class="btn btn-primary" onclick="window.location.href='mission-control.html'"
                         style="width: 100%; max-width: 280px; justify-content: center; padding: 14px;">
                         📂 Browse Syllabus
                     </button>
@@ -103,6 +112,7 @@
                     <button class="fab-btn">🔍 Zoom</button>
                     <button class="fab-btn">🧠 Mnemonic</button>
                     <button class="fab-btn">👶 Explain Like I'm 5</button>
+                    <button class="fab-btn" onclick="startQuiz()" style="background: rgba(14,165,233,0.15); border-color: rgba(14,165,233,0.3);">📝 Take Quiz</button>
                 </div>
             </div>
         </main>
@@ -170,7 +180,8 @@
 
     </div>
 
-    <script type="module" src="js/studio.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="js/learn-studio.js"></script>
 </body>
 
 </html>

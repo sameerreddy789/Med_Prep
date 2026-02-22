@@ -45,19 +45,21 @@
     ```bash
     MedVoice/
     ├── css/
-    │   └── styles.css       # Core styles, variables, and glassmorphism utilities
+    │   └── styles.css           # Core styles, variables, and glassmorphism utilities
     ├── js/
-    │   ├── app.js           # Main entry point
-    │   ├── app-state.js     # User session and progress management
-    │   ├── audio-manager.js # Audio playback logic
-    │   ├── gemini-service.js# AI service layer (Gemini API / Mocks)
-    │   ├── simulator.js     # Clinical case simulation logic
-    │   ├── studio.js        # Study studio interaction logic
-    │   └── visual-map.js    # Concept map rendering (Mermaid/D3)
-    ├── index.html           # Dashboard (Upload, Weakness Radar, Daily Mix)
-    ├── studio.html          # Study Interface (Map + Audio)
-    ├── simulation.html      # Exam/Clinical Simulation Interface
-    └── README.md            # You are here
+    │   ├── main.js              # Main entry point
+    │   ├── state-manager.js     # User session and progress management
+    │   ├── audio-player.js      # Audio playback logic
+    │   ├── ai-service.js        # AI service layer (Gemini API / Mocks)
+    │   ├── clinical-simulator.js# Clinical case simulation logic
+    │   ├── learn-studio.js      # Study studio interaction logic
+    │   ├── prompt-templates.js  # AI prompt templates
+    │   └── concept-map.js       # Concept map rendering (Mermaid/D3)
+    ├── dashboard.html           # Dashboard (Upload, Weakness Radar, Daily Mix)
+    ├── learn.html               # Study Interface (Map + Audio)
+    ├── clinical-sim.html        # Exam/Clinical Simulation Interface
+    ├── mission-control.html     # Profile, Syllabus & Achievements
+    └── README.md                # You are here
     ```
 
     ---

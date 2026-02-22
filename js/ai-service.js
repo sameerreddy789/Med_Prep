@@ -3,8 +3,8 @@
  * Handles all AI interactions using specific MedVoice protocols.
  */
 
-import { appState } from './app-state.js';
-import { PROMPT_TEMPLATES } from './prompts.js';
+import { appState } from './state-manager.js';
+import { PROMPT_TEMPLATES } from './prompt-templates.js';
 
 class GeminiService {
     constructor() {

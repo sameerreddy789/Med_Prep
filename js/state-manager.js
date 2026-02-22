@@ -149,8 +149,14 @@ class AppState {
 
     // --- UI Helpers ---
     updateUI() {
-        const profileBtns = document.querySelectorAll('.profile-btn-text');
-        profileBtns.forEach(btn => btn.innerText = this.user.name);
+        const profileBtns = document.querySelectorAll('.nav-profile-btn');
+        profileBtns.forEach(btn => {
+            // Update text content while preserving SVG icon
+            const svg = btn.querySelector('svg');
+            btn.textContent = '';
+            if (svg) btn.appendChild(svg);
+            btn.appendChild(document.createTextNode(' ' + this.user.name));
+        });
     }
 }
 

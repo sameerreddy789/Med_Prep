@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MedVoice Clinical Simulation - Practice clinical cases with AI-driven patient roleplay.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
     <title>Simulation Arena | MedVoice</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" as="style">
     <link rel="stylesheet" href="css/styles.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
@@ -15,18 +18,19 @@
     <!-- Navbar -->
     <header class="glass-header">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">🧠 MedVoice</a>
+            <a href="dashboard.html" class="nav-logo">🧠 MedVoice</a>
+            <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
             <nav class="nav-links">
-                <a href="index.html" class="nav-link">Dashboard</a>
-                <a href="studio.html" class="nav-link">Learn</a>
-                <a href="simulation.html" class="nav-link active">Clinical Sim</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="learn.html" class="nav-link">Learn</a>
+                <a href="clinical-sim.html" class="nav-link active">Clinical Sim</a>
             </nav>
             <div style="display: flex; align-items: center; gap: 12px;">
-                <span
+                <span id="live-indicator"
                     style="padding: 6px 12px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-radius: 20px; font-size: 0.8rem; border: 1px solid rgba(239, 68, 68, 0.4); display: flex; align-items: center; gap: 6px;">
-                    <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%;"></span> Live
+                    <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: pulse 1.5s infinite;"></span> Live
                 </span>
-                <a href="profile.html" class="nav-profile-btn">
+                <a href="mission-control.html" class="nav-profile-btn">
                     <svg viewBox="0 0 24 24">
                         <circle cx="12" cy="8" r="4" />
                         <path d="M20 21a8 8 0 0 0-16 0" />
@@ -38,11 +42,11 @@
     </header>
 
     <main class="container"
-        style="flex: 1; display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding-bottom: 24px; overflow: hidden;">
+        style="flex: 1; display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding-bottom: 24px; overflow: hidden; min-height: 0;">
 
         <!-- Sidebar: Patient Vitals & Info -->
         <div class="glass-panel"
-            style="padding: 24px; display: flex; flex-direction: column; gap: 24px; overflow-y: auto;">
+            style="padding: 24px; display: flex; flex-direction: column; gap: 24px; overflow-y: auto; min-height: 0;">
 
             <!-- Patient Profile -->
             <div style="text-align: center;">
@@ -149,7 +153,8 @@
 
     </main>
 
-    <script type="module" src="js/simulator.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/clinical-simulator.js"></script>
 </body>
 
 </html>

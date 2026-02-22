@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MedVoice - Your Intelligent Medical Study Companion. Transform complex medical concepts into interactive audio, visual maps, and clinical simulations.">
+    <meta property="og:title" content="MedVoice - Medical Study Companion">
+    <meta property="og:description" content="Simplifying complex medical concepts through interactive audio, visual maps, and clinical simulations.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <title>MedVoice - Your Intelligent Medical Study Companion</title>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" as="style">
+    <link rel="stylesheet" href="css/styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="glass-header">
+        <div class="nav-container">
+            <a href="dashboard.html" class="nav-logo">🧠 MedVoice</a>
+            <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
+            <nav class="nav-links">
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="learn.html" class="nav-link">Learn</a>
+                <a href="clinical-sim.html" class="nav-link">Clinical Sim</a>
+            </nav>
+            <a href="mission-control.html" class="nav-profile-btn">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M20 21a8 8 0 0 0-16 0" />
+                </svg>
+                Profile
+            </a>
+        </div>
+    </header>
+
+    <main style="width: 95%; max-width: 1400px; margin: 0 auto; padding: 40px 0 60px;">
+
+        <!-- Greeting -->
+        <section style="margin-bottom: 32px;">
+            <h1 style="margin-bottom: 6px;" id="greeting">Hello, Dr. Future 🩺</h1>
+            <p style="font-size: 1rem;" id="greeting-sub">Ready to simplify complex concepts today?</p>
+        </section>
+
+        <!-- ===== TOP ROW: Hero + Sidebar ===== -->
+        <div
+            style="display: grid; grid-template-columns: 1fr 380px; gap: 2rem; margin-bottom: 2rem; align-items: stretch;">
+
+            <!-- LEFT: Active Subject Tracker (Curriculum Hero) -->
+            <div class="glass-card" style="padding: 36px; display: flex; align-items: center; gap: 36px;">
+                <!-- Large Progress Ring -->
+                <div style="position: relative; width: 140px; height: 140px; flex-shrink: 0;">
+                    <svg viewBox="0 0 36 36" style="transform: rotate(-90deg); width: 100%; height: 100%;">
+                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.06)"
+                            stroke-width="2.5" />
+                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="#0ea5e9" stroke-width="2.5" id="hero-ring"
+                            stroke-dasharray="0, 100" stroke-linecap="round"
+                            style="transition: stroke-dasharray 1s ease;" />
+                    </svg>
+                    <span
+                        style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 700;"
+                        id="hero-pct">—</span>
+                </div>
+                <!-- Info -->
+                <div style="flex: 1;">
+                    <p
+                        style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px;">
+                        Currently Studying</p>
+                    <h2 style="margin-bottom: 6px;" id="hero-subject">—</h2>
+                    <p style="font-size: 0.85rem; margin-bottom: 20px;" id="hero-detail">Loading curriculum data...</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="learn.html" class="btn btn-primary" style="padding: 10px 24px;">▶ Jump Back In</a>
+                        <a href="mission-control.html" class="btn btn-glass"
+                            style="padding: 10px 24px; text-decoration: none;">📚 View Full Syllabus</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Stats + Daily Mix -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+
+                <!-- Quick Stats Row -->
+                <div class="glass-card" style="padding: 24px;">
+                    <div style="display: flex; justify-content: space-around; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.6rem; font-weight: 700; color: #4ade80;" id="stat-mastered">—</div>
+                            <div
+                                style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">
+                                Mastered</div>
+                        </div>
+                        <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+                        <div>
+                            <div style="font-size: 1.6rem; font-weight: 700; color: var(--accent-primary);"
+                                id="stat-progress">—</div>
+                            <div
+                                style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">
+                                In Progress</div>
+                        </div>
+                        <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+                        <div>
+                            <div style="font-size: 1.6rem; font-weight: 700;" id="stat-subjects">—</div>
+                            <div
+                                style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">
+                                Subjects</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Daily Mix -->
+                <div class="glass-card"
+                    style="padding: 24px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(20, 184, 166, 0.08)); flex: 1; display: flex; flex-direction: column;">
+                    <h4 style="margin-bottom: 10px;">📅 Daily Review Mix</h4>
+                    <div id="daily-mix-list"
+                        style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; flex: 1;">
+                        <!-- Populated by JS -->
+                    </div>
+                    <a href="learn.html" class="btn btn-primary"
+                        style="width: 100%; justify-content: center; padding: 10px; text-decoration: none;">Start
+                        Review</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== BOTTOM ROW: Heatmap + Focus Areas ===== -->
+        <div style="display: grid; grid-template-columns: 1fr 380px; gap: 2rem; align-items: start;">
+
+            <!-- LEFT: Mastery Matrix -->
+            <div class="glass-card" style="padding: 2.5rem;">
+                <h3 style="margin-bottom: 24px;">🗺️ Mastery Matrix</h3>
+
+                <!-- Subject-grouped rows rendered by JS -->
+                <div id="mastery-matrix" class="mastery-matrix"></div>
+
+                <!-- Footer: Summary (left) + Legend (right) -->
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.05);">
+                    <p style="font-size: 0.75rem; color: #64748b;" id="heatmap-summary">Loading...</p>
+                    <div style="display: flex; gap: 16px; align-items: center; font-size: 0.7rem; color: #64748b;">
+                        <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot"
+                                style="background: #14b8a6;"></span>Mastered</span>
+                        <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot"
+                                style="background: #0ea5e9;"></span>In Progress</span>
+                        <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot"
+                                style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.06);"></span>Not
+                            Started</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Focus Areas + Quick Ingestion -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+
+                <!-- Focus Areas -->
+                <div class="glass-card" style="padding: 24px;">
+                    <h4 style="margin-bottom: 12px;">🎯 Focus Areas</h4>
+                    <p style="font-size: 0.8rem; margin-bottom: 12px;">Topics below the 80% mastery gate.</p>
+                    <div id="focus-areas" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Quick Upload -->
+                <div class="glass-card" style="padding: 24px; flex: 1;">
+                    <h4 style="margin-bottom: 14px;">📥 Quick Upload</h4>
+                    <div style="border: 2px dashed rgba(255,255,255,0.1); border-radius: 14px; padding: 32px 20px; text-align: center; cursor: pointer; transition: border-color 0.3s, background 0.3s;"
+                        id="drop-zone">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">📄</div>
+                        <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Drop your lecture notes here</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">Supports PDF, PPT,
+                            and Images</p>
+                        <button class="btn btn-primary" style="padding: 10px 28px;" id="browse-btn">Browse Files</button>
+                        <input type="file" id="file-input" accept=".pdf,.ppt,.pptx,.png,.jpg,.jpeg" multiple style="display: none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
