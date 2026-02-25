@@ -149,14 +149,9 @@ class AppState {
 
     // --- UI Helpers ---
     updateUI() {
-        const profileBtns = document.querySelectorAll('.nav-profile-btn');
-        profileBtns.forEach(btn => {
-            // Update text content while preserving SVG icon
-            const svg = btn.querySelector('svg');
-            btn.textContent = '';
-            if (svg) btn.appendChild(svg);
-            btn.appendChild(document.createTextNode(' ' + this.user.name));
-        });
+        // Update sidebar user name if present
+        const nameEl = document.getElementById('sp-name');
+        if (nameEl) nameEl.textContent = this.user.name || 'Dr. Future';
     }
 }
 

@@ -1,316 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="MedVoice Mission Control - Manage your profile, syllabus, and track achievements.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
     <title>Mission Control | MedVoice</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" as="style">
     <link rel="stylesheet" href="css/styles.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <div class="app-container">
+        <!-- Sidebar injected by JS -->
+        <div class="main-content">
 
-    <!-- Navbar -->
-    <header class="glass-header">
-        <div class="nav-container">
-            <a href="dashboard.html" class="nav-logo">🧠 MedVoice</a>
-            <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
-            <nav class="nav-links">
-                <a href="dashboard.html" class="nav-link">Dashboard</a>
-                <a href="learn.html" class="nav-link">Learn</a>
-                <a href="clinical-sim.html" class="nav-link">Clinical Sim</a>
-            </nav>
-            <span class="nav-profile-btn"
-                style="border-color: var(--accent-primary); box-shadow: 0 0 10px rgba(14,165,233,0.2);">
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M20 21a8 8 0 0 0-16 0" />
-                </svg>
-                Profile
-            </span>
-        </div>
-    </header>
-
-    <main style="width: 95%; max-width: 1600px; margin: 0 auto; padding: 40px 0;">
-
-        <!-- Page Title -->
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px;">
-            <div>
-                <h1 style="margin-bottom: 8px;">Mission Control 🎯</h1>
-                <p>Your academic identity, syllabus roadmap, and achievements — all in one place.</p>
-            </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 340px 1fr; gap: 2rem;">
-
-            <!-- LEFT: Identity & Stats -->
-            <div style="display: flex; flex-direction: column; gap: 24px;">
-
-                <!-- Profile Card -->
-                <div class="glass-card" style="text-align: center; padding: 32px 24px;">
-                    <!-- Avatar -->
-                    <div
-                        style="width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 0 0 25px rgba(14, 165, 233, 0.3);">
-                        🩺
-                    </div>
-                    <h2 style="margin-bottom: 4px;" id="profile-name">Dr. Future</h2>
-                    <p style="font-size: 0.85rem; margin-bottom: 16px;" id="profile-school">2nd Year MBBS</p>
-
-                    <div
-                        style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;">
-                        <span class="status-badge in-progress">🌐 Hinglish</span>
-                        <span class="status-badge mastered">📅 5-Day Streak</span>
-                    </div>
-
-                    <button class="btn btn-glass" style="width: 100%; justify-content: center;"
-                        onclick="toggleEditProfile()">✏️ Edit Profile</button>
-
-                    <!-- Edit Form (Hidden by default) -->
-                    <div id="edit-profile-form" style="display: none; margin-top: 20px; text-align: left;">
-                        <div style="margin-bottom: 12px;">
-                            <label for="input-name"
-                                style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Name</label>
-                            <input type="text" id="input-name" value="Dr. Future"
-                                style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: var(--font-body); font-size: 0.9rem;">
-                        </div>
-                        <div style="margin-bottom: 12px;">
-                            <label for="input-year"
-                                style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Year
-                                of Study</label>
-                            <select id="input-year"
-                                style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: var(--font-body);">
-                                <option>1st Year MBBS</option>
-                                <option selected>2nd Year MBBS</option>
-                                <option>3rd Year MBBS</option>
-                                <option>Final Year MBBS</option>
-                            </select>
-                        </div>
-                        <div style="margin-bottom: 16px;">
-                            <label for="input-language"
-                                style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Preferred
-                                Language</label>
-                            <select id="input-language"
-                                style="width: 100%; padding: 10px 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-family: var(--font-body);">
-                                <option selected>Hinglish</option>
-                                <option>English</option>
-                                <option>Teluglish</option>
-                                <option>Tanglish</option>
-                            </select>
-                        </div>
-                        <button class="btn btn-primary" style="width: 100%; justify-content: center;"
-                            onclick="saveProfile()">💾 Save Changes</button>
-                    </div>
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h1>Mission Control 🎯</h1>
+                    <p class="page-subtitle">Your academic identity, syllabus roadmap, and achievements — all in one place.</p>
                 </div>
-
-                <!-- Quick Stats -->
-                <div class="glass-card">
-                    <h4 style="margin-bottom: 16px;">📊 Overview</h4>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 0.85rem; color: var(--text-secondary);">Topics Mastered</span>
-                            <span style="font-weight: 700; color: #4ade80;" data-stat="mastered">— / —</span>
-                        </div>
-                        <div class="progress-bar-bg" style="height: 8px;">
-                            <div class="progress-bar-fill" data-stat="progress" style="width: 0%;"></div>
-                        </div>
-
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-                            <span style="font-size: 0.85rem; color: var(--text-secondary);">Subjects Active</span>
-                            <span style="font-weight: 700;" data-stat="subjects">—</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 0.85rem; color: var(--text-secondary);">Best Streak</span>
-                            <span style="font-weight: 700; color: var(--accent-warning);">🔥 12 Days</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Achievement Vault -->
-                <div class="glass-card">
-                    <h4 style="margin-bottom: 16px;">🏆 Achievements</h4>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                        <div title="Completed Upper Limb"
-                            style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(34, 197, 94, 0.1)); border: 1px solid rgba(74, 222, 128, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">
-                            💪</div>
-                        <div title="5-Day Streak"
-                            style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.1)); border: 1px solid rgba(249, 115, 22, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">
-                            🔥</div>
-                        <div title="First Quiz Passed"
-                            style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(37, 99, 235, 0.1)); border: 1px solid rgba(14, 165, 233, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">
-                            🎯</div>
-                        <div title="Thorax Master (Locked)"
-                            style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; opacity: 0.3; cursor: default;">
-                            🫀</div>
-                        <div title="100 Topics (Locked)"
-                            style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; opacity: 0.3; cursor: default;">
-                            💯</div>
-                    </div>
-                </div>
-
-                <!-- Reset Data -->
-                <button class="btn btn-danger" style="width: 100%; justify-content: center;" onclick="window.resetMedVoiceData()">🗑️ Reset All Data</button>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 24px;">
-
-                <!-- Syllabus Header -->
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h2>📚 My Syllabus</h2>
-                    <button class="btn btn-primary" onclick="openModal()" style="padding: 10px 24px;">
-                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="white" fill="none" stroke-width="2.5">
-                            <line x1="12" y1="5" x2="12" y2="19" />
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                        </svg>
-                        Add Subject
-                    </button>
-                </div>
-
-                <!-- Dynamic Syllabus Accordion -->
-                <div id="syllabus-tree" style="display: flex; flex-direction: column; gap: 16px;"></div>
             </div>
 
-        </div>
-    </main>
+            <div style="display: grid; grid-template-columns: 320px 1fr; gap: 2rem;">
 
-    <!-- ===== MODAL: Subject Ingestion Hub ===== -->
-    <div id="subject-modal"
-        style="display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center;">
-        <div
-            style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 32px; width: 90%; max-width: 560px; box-shadow: 0 24px 80px rgba(0,0,0,0.5); position: relative;">
+                <!-- LEFT: Identity & Stats -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
 
-            <!-- Close -->
-            <button onclick="closeModal()"
-                style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 1.3rem; cursor: pointer; transition: color 0.2s;">✕</button>
+                    <!-- Profile Card -->
+                    <div class="card" style="text-align: center; padding: 28px 20px;">
+                        <div style="width: 88px; height: 88px; border-radius: 50%; background: var(--gradient-primary); margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 0 25px rgba(59, 130, 246, 0.3);">🩺</div>
+                        <h2 style="margin-bottom: 4px;" id="profile-name">Dr. Future</h2>
+                        <p style="font-size: 0.85rem; margin-bottom: 14px;" id="profile-school">2nd Year MBBS</p>
+                        <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px;">
+                            <span class="status-badge in-progress">🌐 Hinglish</span>
+                            <span class="status-badge mastered">📅 5-Day Streak</span>
+                        </div>
+                        <button class="btn btn-glass" style="width: 100%; justify-content: center;" onclick="toggleEditProfile()">✏️ Edit Profile</button>
 
-            <h2 style="margin-bottom: 4px;">🧪 Subject Ingestion Hub</h2>
-            <p style="font-size: 0.85rem; margin-bottom: 24px;">Add a new subject manually or paste your entire syllabus
-                for AI parsing.</p>
+                        <!-- Edit Form -->
+                        <div id="edit-profile-form" style="display: none; margin-top: 20px; text-align: left;">
+                            <div style="margin-bottom: 12px;">
+                                <label for="input-name" class="form-label">Name</label>
+                                <input type="text" id="input-name" value="Dr. Future" class="form-input">
+                            </div>
+                            <div style="margin-bottom: 12px;">
+                                <label for="input-year" class="form-label">Year of Study</label>
+                                <select id="input-year" class="form-select">
+                                    <option>1st Year MBBS</option>
+                                    <option selected>2nd Year MBBS</option>
+                                    <option>3rd Year MBBS</option>
+                                    <option>Final Year MBBS</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <label for="input-language" class="form-label">Preferred Language</label>
+                                <select id="input-language" class="form-select">
+                                    <option selected>Hinglish</option>
+                                    <option>English</option>
+                                    <option>Teluglish</option>
+                                    <option>Tanglish</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="saveProfile()">💾 Save Changes</button>
+                        </div>
+                    </div>
 
-            <!-- Tab Switcher -->
-            <div style="display: flex; gap: 8px; margin-bottom: 20px;" id="modal-tabs">
-                <button class="modal-tab active" onclick="switchTab('manual')" id="tab-manual">Manual Entry</button>
-                <button class="modal-tab" onclick="switchTab('bulk')" id="tab-bulk">📋 Bulk Ingest</button>
-            </div>
+                    <!-- Quick Stats -->
+                    <div class="card">
+                        <h4 style="margin-bottom: 14px;">📊 Overview</h4>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.85rem; color: var(--text-secondary);">Topics Mastered</span>
+                                <span style="font-weight: 700; color: var(--accent-green);" data-stat="mastered">— / —</span>
+                            </div>
+                            <div class="progress-bar-bg" style="height: 8px;">
+                                <div class="progress-bar-fill" data-stat="progress" style="width: 0%;"></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                                <span style="font-size: 0.85rem; color: var(--text-secondary);">Subjects Active</span>
+                                <span style="font-weight: 700;" data-stat="subjects">—</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.85rem; color: var(--text-secondary);">Best Streak</span>
+                                <span style="font-weight: 700; color: var(--accent-gold);">🔥 12 Days</span>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- Manual Entry -->
-            <div id="panel-manual">
-                <div style="margin-bottom: 14px;">
-                    <label for="modal-subject-name"
-                        style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Subject
-                        Name</label>
-                    <input type="text" id="modal-subject-name" placeholder="e.g., Pharmacology"
-                        style="width: 100%; padding: 12px 14px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; font-family: var(--font-body); font-size: 0.9rem; transition: border-color 0.3s; box-sizing: border-box;">
+                    <!-- Achievements -->
+                    <div class="card">
+                        <h4 style="margin-bottom: 14px;">🏆 Achievements</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <div title="Completed Upper Limb" style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1)); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">💪</div>
+                            <div title="5-Day Streak" style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.1)); border: 1px solid rgba(249, 115, 22, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">🔥</div>
+                            <div title="First Quiz Passed" style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.1)); border: 1px solid rgba(59, 130, 246, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">🎯</div>
+                            <div title="Thorax Master (Locked)" style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; opacity: 0.3;">🫀</div>
+                            <div title="100 Topics (Locked)" style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; opacity: 0.3;">💯</div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-danger" style="width: 100%; justify-content: center;" onclick="window.resetMedVoiceData()">🗑️ Reset All Data</button>
                 </div>
-                <div style="margin-bottom: 14px;">
-                    <label for="modal-units"
-                        style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Units
-                        <span style="color: var(--text-muted); text-transform: none;">(comma-separated)</span></label>
-                    <input type="text" id="modal-units" placeholder="e.g., General Pharmacology, ANS, CVS"
-                        style="width: 100%; padding: 12px 14px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; font-family: var(--font-body); font-size: 0.9rem; transition: border-color 0.3s; box-sizing: border-box;">
-                </div>
-                <p id="modal-error" style="color: #fca5a5; font-size: 0.8rem; margin-bottom: 12px; display: none;"></p>
-                <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;"
-                    onclick="submitManualSubject()">
-                    Add to Curriculum
-                </button>
-            </div>
 
-            <!-- Bulk Ingest -->
-            <div id="panel-bulk" style="display: none;">
-                <div style="margin-bottom: 14px;">
-                    <label for="modal-bulk-text"
-                        style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px;">Paste
-                        Raw Syllabus</label>
-                    <textarea id="modal-bulk-text"
-                        placeholder="Anatomy&#10;  Unit 1: Upper Limb&#10;    - Brachial Plexus&#10;    - Axillary Artery&#10;  Unit 2: Thorax&#10;    - Cardiac Cycle"
-                        style="width: 100%; height: 160px; padding: 12px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; font-family: var(--font-body); font-size: 0.85rem; resize: vertical; box-sizing: border-box;"></textarea>
+                <!-- RIGHT: Syllabus -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h2>📚 My Syllabus</h2>
+                        <button class="btn btn-primary" onclick="openModal()" style="padding: 10px 24px;">+ Add Subject</button>
+                    </div>
+                    <div id="syllabus-tree" style="display: flex; flex-direction: column; gap: 16px;"></div>
                 </div>
-                <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;"
-                    onclick="submitBulkIngest()">
-                    🧠 AI Parse & Add
-                </button>
             </div>
         </div>
     </div>
 
-    <style>
-        /* Modal Tab Buttons */
-        .modal-tab {
-            flex: 1;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            color: var(--text-secondary);
-            font-family: var(--font-body);
-            font-weight: 500;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal-tab:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-        }
-
-        .modal-tab.active {
-            background: rgba(14, 165, 233, 0.15);
-            border-color: var(--accent-primary);
-            color: white;
-        }
-
-        /* Accordion */
-        .subject-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .subject-card:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .unit-block {
-            transition: all 0.3s ease;
-        }
-
-        .unit-block:hover {
-            background: rgba(255, 255, 255, 0.04) !important;
-        }
-
-        .topic-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 12px;
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 8px;
-            font-size: 0.8rem;
-            transition: background 0.2s;
-        }
-
-        .topic-row:hover {
-            background: rgba(0, 0, 0, 0.25);
-        }
-
-        /* Modal input focus */
-        #subject-modal input:focus,
-        #subject-modal textarea:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
-        }
-    </style>
+    <!-- Subject Modal -->
+    <div id="subject-modal" style="display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center;">
+        <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 32px; width: 90%; max-width: 560px; box-shadow: 0 24px 80px rgba(0,0,0,0.5); position: relative;">
+            <button onclick="closeModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 1.3rem; cursor: pointer;">✕</button>
+            <h2 style="margin-bottom: 4px;">🧪 Subject Ingestion Hub</h2>
+            <p style="font-size: 0.85rem; margin-bottom: 24px;">Add a new subject manually or paste your entire syllabus for AI parsing.</p>
+            <div style="display: flex; gap: 8px; margin-bottom: 20px;" id="modal-tabs">
+                <button class="modal-tab active" onclick="switchTab('manual')" id="tab-manual">Manual Entry</button>
+                <button class="modal-tab" onclick="switchTab('bulk')" id="tab-bulk">📋 Bulk Ingest</button>
+            </div>
+            <div id="panel-manual">
+                <div style="margin-bottom: 14px;">
+                    <label for="modal-subject-name" class="form-label">Subject Name</label>
+                    <input type="text" id="modal-subject-name" placeholder="e.g., Pharmacology" class="form-input">
+                </div>
+                <div style="margin-bottom: 14px;">
+                    <label for="modal-units" class="form-label">Units <span style="color: var(--text-muted); text-transform: none;">(comma-separated)</span></label>
+                    <input type="text" id="modal-units" placeholder="e.g., General Pharmacology, ANS, CVS" class="form-input">
+                </div>
+                <p id="modal-error" style="color: #fca5a5; font-size: 0.8rem; margin-bottom: 12px; display: none;"></p>
+                <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="submitManualSubject()">Add to Curriculum</button>
+            </div>
+            <div id="panel-bulk" style="display: none;">
+                <div style="margin-bottom: 14px;">
+                    <label for="modal-bulk-text" class="form-label">Paste Raw Syllabus</label>
+                    <textarea id="modal-bulk-text" placeholder="Anatomy&#10;  Unit 1: Upper Limb&#10;    - Brachial Plexus&#10;    - Axillary Artery" style="width: 100%; height: 160px; padding: 12px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; font-family: inherit; font-size: 0.85rem; resize: vertical; box-sizing: border-box;"></textarea>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="submitBulkIngest()">🧠 AI Parse & Add</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
+    <script src="js/sidebar.js"></script>
     <script src="js/mission-control.js"></script>
-
 </body>
-
 </html>

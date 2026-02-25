@@ -106,27 +106,40 @@ window.resetMedVoiceData = function() {
     var saved = localStorage.getItem('medvoice_theme');
     if (saved === 'light') document.body.classList.add('theme-light');
 
-    // Inject toggle button into every nav
-    var nav = document.querySelector('.nav-container');
-    if (!nav) return;
+    // Inject toggle button into sidebar header (after sidebar.js loads)
+    function injectThemeToggle() {
+        var header = document.querySelector('.sidebar-header');
+        if (!header) return;
+        // Avoid duplicate
+        if (header.querySelector('.theme-toggle')) return;
 
-    var btn = document.createElement('button');
-    btn.className = 'theme-toggle';
-    btn.setAttribute('aria-label', 'Toggle light/dark theme');
-    btn.textContent = document.body.classList.contains('theme-light') ? '🌙' : '☀️';
+        var btn = document.createElement('button');
+        btn.className = 'theme-toggle';
+        btn.setAttribute('aria-label', 'Toggle light/dark theme');
+        btn.textContent = document.body.classList.contains('theme-light') ? '🌙' : '☀️';
+        btn.style.marginLeft = '4px';
 
-    // Insert before the last child (profile btn or end)
-    var profileBtn = nav.querySelector('.nav-profile-btn');
-    if (profileBtn) {
-        nav.insertBefore(btn, profileBtn);
-    } else {
-        nav.appendChild(btn);
+        var toggleBtn = header.querySelector('.sidebar-toggle-btn');
+        if (toggleBtn) {
+            header.insertBefore(btn, toggleBtn);
+        } else {
+            header.appendChild(btn);
+        }
+
+        btn.addEventListener('click', function() {
+            document.body.classList.toggle('theme-light');
+            var isLight = document.body.classList.contains('theme-light');
+            btn.textContent = isLight ? '🌙' : '☀️';
+            localStorage.setItem('medvoice_theme', isLight ? 'light' : 'dark');
+        });
     }
 
-    btn.addEventListener('click', function() {
-        document.body.classList.toggle('theme-light');
-        var isLight = document.body.classList.contains('theme-light');
-        btn.textContent = isLight ? '🌙' : '☀️';
-        localStorage.setItem('medvoice_theme', isLight ? 'light' : 'dark');
-    });
+    // Run after DOM is ready (sidebar.js injects synchronously)
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(injectThemeToggle, 0);
+        });
+    } else {
+        setTimeout(injectThemeToggle, 0);
+    }
 })();

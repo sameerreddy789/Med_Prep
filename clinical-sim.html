@@ -1,160 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="MedVoice Clinical Simulation - Practice clinical cases with AI-driven patient roleplay.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
     <title>Simulation Arena | MedVoice</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" as="style">
     <link rel="stylesheet" href="css/styles.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar injected by JS -->
+        <div class="main-content" style="padding: 0; display: flex; flex-direction: column; height: 100vh; overflow: hidden;">
 
-<body style="height: 100vh; display: flex; flex-direction: column;">
-    <!-- Navbar -->
-    <header class="glass-header">
-        <div class="nav-container">
-            <a href="dashboard.html" class="nav-logo">🧠 MedVoice</a>
-            <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">☰</button>
-            <nav class="nav-links">
-                <a href="dashboard.html" class="nav-link">Dashboard</a>
-                <a href="learn.html" class="nav-link">Learn</a>
-                <a href="clinical-sim.html" class="nav-link active">Clinical Sim</a>
-            </nav>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <span id="live-indicator"
-                    style="padding: 6px 12px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-radius: 20px; font-size: 0.8rem; border: 1px solid rgba(239, 68, 68, 0.4); display: flex; align-items: center; gap: 6px;">
-                    <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: pulse 1.5s infinite;"></span> Live
-                </span>
-                <a href="mission-control.html" class="nav-profile-btn">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="8" r="4" />
-                        <path d="M20 21a8 8 0 0 0-16 0" />
-                    </svg>
-                    Profile
-                </a>
+            <!-- Sim Header Bar -->
+            <div style="padding: 16px 24px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+                <h2 style="font-size: 1.1rem; margin: 0;">🏥 Simulation Arena</h2>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span id="live-indicator" style="padding: 6px 12px; background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-radius: 20px; font-size: 0.8rem; border: 1px solid rgba(239, 68, 68, 0.4); display: flex; align-items: center; gap: 6px;">
+                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: pulse 1.5s infinite;"></span> Live
+                    </span>
+                </div>
+            </div>
+
+            <!-- Main Sim Grid -->
+            <div style="flex: 1; display: grid; grid-template-columns: 280px 1fr; gap: 0; overflow: hidden; min-height: 0;">
+
+                <!-- Sidebar: Patient Vitals -->
+                <div class="glass-panel" style="padding: 24px; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; min-height: 0; border-radius: 0; border-right: 1px solid var(--glass-border); border-top: none; border-bottom: none; border-left: none;">
+                    <div style="text-align: center;">
+                        <div style="width: 72px; height: 72px; background: #cbd5e1; border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">👨‍🦳</div>
+                        <h3>Mr. Sharma</h3>
+                        <p>58 Years · Male</p>
+                    </div>
+                    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <div>
+                        <h4 style="margin-bottom: 12px; color: var(--accent-teal);">🏥 Vitals Monitor</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">HR (bpm)</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; color: #ef4444;">102 ↑</div>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">BP (mmHg)</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; color: #f59e0b;">150/95</div>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">SpO2</div>
+                                <div style="font-size: 1.3rem; font-weight: 700; color: #22c55e;">96%</div>
+                            </div>
+                            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">Temp</div>
+                                <div style="font-size: 1.3rem; font-weight: 700;">98.6°F</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="margin-bottom: 12px;">📋 Your Tasks</h4>
+                        <ul style="list-style: none; padding-left: 0; font-size: 0.85rem; color: var(--text-secondary);">
+                            <li style="margin-bottom: 8px;">✅ Take History</li>
+                            <li style="margin-bottom: 8px;">⬜ Perform Physical Exam</li>
+                            <li style="margin-bottom: 8px;">⬜ Order Labs</li>
+                            <li style="margin-bottom: 8px;">⬜ Diagnose</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-alert" style="width: 100%; justify-content: center;">End Simulation</button>
+                </div>
+
+                <!-- Chat Interface -->
+                <div style="display: flex; flex-direction: column; overflow: hidden;">
+                    <div id="chat-window" style="flex: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px;">
+                        <div style="display: flex; gap: 16px;">
+                            <div style="width: 40px; height: 40px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">👨‍🦳</div>
+                            <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 0 16px 16px 16px; max-width: 70%;">
+                                <p style="color: white; margin: 0;">Doctor, I have this heavy feeling in my chest since morning. It feels like an elephant is sitting on me.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 16px; flex-direction: row-reverse;">
+                            <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">🩺</div>
+                            <div style="background: var(--accent-primary); padding: 16px; border-radius: 16px 0 16px 16px; max-width: 70%;">
+                                <p style="color: white; margin: 0;">Does the pain radiate anywhere? Like your arm or jaw?</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 16px;">
+                            <div style="width: 40px; height: 40px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">👨‍🦳</div>
+                            <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 0 16px 16px 16px; max-width: 70%;">
+                                <p style="color: white; margin: 0;">Yes, actually. My left arm feels a bit numb and tingly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 20px 24px; background: rgba(0,0,0,0.2); display: flex; gap: 12px; align-items: center; border-top: 1px solid rgba(255,255,255,0.06);">
+                        <button class="btn btn-glass" style="padding: 12px;">🎤</button>
+                        <input type="text" placeholder="Ask a question or order a test..." style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; color: white; outline: none; font-size: 0.95rem;">
+                        <button class="btn btn-primary" style="padding: 12px 24px;">Send</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
-
-    <main class="container"
-        style="flex: 1; display: grid; grid-template-columns: 300px 1fr; gap: 24px; padding-bottom: 24px; overflow: hidden; min-height: 0;">
-
-        <!-- Sidebar: Patient Vitals & Info -->
-        <div class="glass-panel"
-            style="padding: 24px; display: flex; flex-direction: column; gap: 24px; overflow-y: auto; min-height: 0;">
-
-            <!-- Patient Profile -->
-            <div style="text-align: center;">
-                <div
-                    style="width: 80px; height: 80px; background: #cbd5e1; border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-                    👨‍🦳</div>
-                <h3>Mr. Sharma</h3>
-                <p>58 Years • Male</p>
-            </div>
-
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1);">
-
-            <!-- Vitals Monitor -->
-            <div>
-                <h4 style="margin-bottom: 12px; color: var(--accent-secondary);">🏥 Vitals Monitor</h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px;">
-                        <div style="font-size: 0.8rem; color: var(--text-secondary);">HR (bpm)</div>
-                        <div style="font-size: 1.5rem; font-weight: 700; color: #ef4444;">102 <span
-                                style="font-size: 1rem;">↑</span></div>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px;">
-                        <div style="font-size: 0.8rem; color: var(--text-secondary);">BP (mmHg)</div>
-                        <div style="font-size: 1.5rem; font-weight: 700; color: #f59e0b;">150/95</div>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px;">
-                        <div style="font-size: 0.8rem; color: var(--text-secondary);">SpO2</div>
-                        <div style="font-size: 1.5rem; font-weight: 700; color: #22c55e;">96%</div>
-                    </div>
-                    <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px;">
-                        <div style="font-size: 0.8rem; color: var(--text-secondary);">Temp</div>
-                        <div style="font-size: 1.5rem; font-weight: 700;">98.6°F</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Task List -->
-            <div style="flex: 1;">
-                <h4 style="margin-bottom: 12px;">📋 Your Tasks</h4>
-                <ul style="list-style: none; padding-left: 0; font-size: 0.9rem; color: var(--text-secondary);">
-                    <li style="margin-bottom: 8px;">✅ Take History</li>
-                    <li style="margin-bottom: 8px;">⬜ Perform Physical Exam</li>
-                    <li style="margin-bottom: 8px;">⬜ Order Labs</li>
-                    <li style="margin-bottom: 8px;">⬜ Diagnose</li>
-                </ul>
-            </div>
-
-            <button class="btn btn-alert"
-                style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid #ef4444; width: 100%; justify-content: center;">End
-                Simulation</button>
-        </div>
-
-        <!-- Main Chat Interface -->
-        <div class="glass-panel" style="display: flex; flex-direction: column; overflow: hidden;">
-
-            <!-- Chat Window -->
-            <div id="chat-window"
-                style="flex: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px;">
-
-                <!-- AI Message -->
-                <div style="display: flex; gap: 16px;">
-                    <div
-                        style="width: 40px; height: 40px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        👨‍🦳</div>
-                    <div
-                        style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 0 16px 16px 16px; max-width: 70%;">
-                        <p style="color: white; margin: 0;">Doctor, I have this heavy feeling in my chest since morning.
-                            It feels like an elephant is sitting on me.</p>
-                    </div>
-                </div>
-
-                <!-- User Message -->
-                <div style="display: flex; gap: 16px; flex-direction: row-reverse;">
-                    <div
-                        style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        🩺</div>
-                    <div
-                        style="background: var(--accent-primary); padding: 16px; border-radius: 16px 0 16px 16px; max-width: 70%;">
-                        <p style="color: white; margin: 0;">Does the pain radiate anywhere? Like your arm or jaw?</p>
-                    </div>
-                </div>
-
-                <!-- AI Message -->
-                <div style="display: flex; gap: 16px;">
-                    <div
-                        style="width: 40px; height: 40px; background: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        👨‍🦳</div>
-                    <div
-                        style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 0 16px 16px 16px; max-width: 70%;">
-                        <p style="color: white; margin: 0;">Yes, actually. My left arm feels a bit numb and tingly.</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Input Area -->
-            <div style="padding: 24px; background: rgba(0,0,0,0.2); display: flex; gap: 16px; align-items: center;">
-                <button class="btn btn-glass" style="padding: 12px;">🎤</button>
-                <input type="text" placeholder="Ask a question or order a test..."
-                    style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 16px; border-radius: 12px; color: white; outline: none; font-size: 1rem;">
-                <button class="btn btn-primary" style="padding: 12px 24px;">Send</button>
-            </div>
-        </div>
-
-    </main>
+    </div>
 
     <script src="js/main.js"></script>
+    <script src="js/sidebar.js"></script>
     <script src="js/clinical-simulator.js"></script>
 </body>
-
 </html>

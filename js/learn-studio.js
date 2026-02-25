@@ -173,20 +173,11 @@ if (followUpInput) {
     });
 }
 
-// Notes & Save Session header buttons
-const headerBtns = document.querySelectorAll('.glass-header .btn-glass');
-headerBtns.forEach(btn => {
-    if (btn.textContent.includes('Notes')) {
-        btn.addEventListener('click', () => {
-            if (typeof window.showToast === 'function') window.showToast('📂 Notes feature coming soon!', 'info');
-        });
-    }
-    if (btn.textContent.includes('Save')) {
-        btn.addEventListener('click', () => {
-            const session = { topic: topicTitle.textContent, mode: currentMode, timestamp: new Date().toISOString() };
-            localStorage.setItem('medvoice_last_session', JSON.stringify(session));
-            if (typeof window.showToast === 'function') window.showToast('💾 Session saved!', 'success');
-        });
+// Auto-save session on topic load
+window.addEventListener('beforeunload', function() {
+    if (topicTitle && topicTitle.textContent !== 'Select a Topic') {
+        var session = { topic: topicTitle.textContent, mode: currentMode, timestamp: new Date().toISOString() };
+        localStorage.setItem('medvoice_last_session', JSON.stringify(session));
     }
 });
 

@@ -2,10 +2,10 @@
 console.log('Simulator logic loaded');
 
 const chatWindow = document.getElementById('chat-window');
-const chatInput = document.querySelector('main input[type="text"]');
-const sendBtn = document.querySelector('main .btn-primary');
+const chatInput = document.querySelector('.main-content input[type="text"]');
+const sendBtn = document.querySelector('.main-content .btn-primary');
 const endSimBtn = document.querySelector('.btn-alert');
-const taskItems = document.querySelectorAll('main ul li');
+const taskItems = document.querySelectorAll('.main-content ul li');
 
 const patientResponses = {
     history: [
