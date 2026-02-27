@@ -3,44 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MedVoice - Your Intelligent Medical Study Companion. Simplifying complex medical concepts through interactive audio, visual maps, and clinical simulations.">
+    <meta name="description" content="MedVoice — Your Intelligent Medical Study Companion. Transform complex concepts into interactive audio, visual maps, and clinical simulations.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
     <title>MedVoice — Intelligent Medical Study Companion</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
-        .landing { text-align: center; max-width: 600px; padding: 2rem; animation: fadeIn 0.6s ease; }
-        .landing-logo { font-size: 5rem; margin-bottom: 1rem; filter: drop-shadow(0 0 30px rgba(59,130,246,0.4)); }
-        .landing h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+        .landing { text-align: center; max-width: 640px; padding: 2rem; animation: fadeIn 0.6s ease; }
+
+        .landing-logo {
+            font-size: 4rem; margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 40px rgba(45,212,191,0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .landing h1 { font-size: 2.8rem; margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -0.04em; }
         .landing h1 span {
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .landing-tagline { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2.5rem; line-height: 1.7; }
+
+        .landing-tagline {
+            font-size: 1.05rem; color: var(--text-secondary);
+            margin-bottom: 2.5rem; line-height: 1.7; max-width: 480px; margin-inline: auto;
+        }
+
         .landing-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
-        .landing-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; text-align: center; }
-        .landing-feature { padding: 20px 12px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; transition: var(--transition-fast); }
-        .landing-feature:hover { border-color: var(--glass-border-hover); transform: translateY(-2px); }
-        .landing-feature-icon { font-size: 1.8rem; margin-bottom: 8px; }
-        .landing-feature-label { font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; }
+
+        .landing-features {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 12px; text-align: center;
+        }
+        .landing-feature {
+            padding: 20px 10px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(12px);
+        }
+        .landing-feature:hover {
+            border-color: var(--glass-border-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+        .landing-feature-icon { font-size: 1.6rem; margin-bottom: 8px; }
+        .landing-feature-label { font-size: 0.75rem; color: var(--text-secondary); font-weight: 600; letter-spacing: 0.02em; }
+
         .bg-glow {
             position: fixed; width: 500px; height: 500px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
             pointer-events: none; z-index: -1;
+        }
+
+        @media (max-width: 600px) {
+            .landing h1 { font-size: 2rem; }
+            .landing-features { grid-template-columns: repeat(2, 1fr); }
+            .landing-logo { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-glow" style="top: -200px; left: -100px;"></div>
-    <div class="bg-glow" style="bottom: -200px; right: -100px; background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%);"></div>
+    <div class="bg-glow" style="top: -200px; left: -100px; background: radial-gradient(circle, rgba(45,212,191,0.06) 0%, transparent 70%);"></div>
+    <div class="bg-glow" style="bottom: -200px; right: -100px; background: radial-gradient(circle, rgba(139,92,246,0.04) 0%, transparent 70%);"></div>
 
-    <main class="landing">
-        <div class="landing-logo">🧠</div>
+    <main class="landing" role="main">
+        <div class="landing-logo" aria-hidden="true">🧠</div>
         <h1><span>MedVoice</span></h1>
-        <p class="landing-tagline">Your intelligent medical study companion. Transform complex concepts into interactive audio lessons, visual maps, and clinical simulations.</p>
+        <p class="landing-tagline">Transform complex medical concepts into interactive audio lessons, visual maps, and clinical simulations.</p>
 
         <div class="landing-actions">
             <a href="dashboard.html" class="btn btn-primary btn-lg">🚀 Open Dashboard</a>

@@ -3,50 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MedVoice - Your Intelligent Medical Study Companion.">
+    <meta name="description" content="MedVoice Dashboard — Track your medical study progress.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
     <title>Dashboard | MedVoice</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar injected by JS -->
         <div class="main-content">
-
-            <!-- Page Header -->
-            <div class="page-header">
+            <!-- Header -->
+            <div class="page-header" style="animation: fadeIn 0.4s ease;">
                 <div>
                     <h1 id="greeting">Hello, Dr. Future 🩺</h1>
                     <p class="page-subtitle" id="greeting-sub">Ready to simplify complex concepts today?</p>
                 </div>
             </div>
 
-            <!-- Stats Grid -->
-            <div class="stats-grid">
+            <!-- Stats -->
+            <div class="stats-grid" style="animation: fadeInUp 0.5s ease 0.1s both;">
                 <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15);">✅</div>
+                    <div class="stat-icon" style="background: rgba(16, 185, 129, 0.12);">✅</div>
                     <div>
                         <div class="stat-value" id="stat-mastered" style="color: var(--accent-green);">—</div>
                         <div class="stat-label">Mastered</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(59, 130, 246, 0.15);">📖</div>
+                    <div class="stat-icon" style="background: rgba(59, 130, 246, 0.12);">📖</div>
                     <div>
                         <div class="stat-value" id="stat-progress" style="color: var(--accent-primary);">—</div>
                         <div class="stat-label">In Progress</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(139, 92, 246, 0.15);">📚</div>
+                    <div class="stat-icon" style="background: rgba(139, 92, 246, 0.12);">📚</div>
                     <div>
                         <div class="stat-value" id="stat-subjects">—</div>
                         <div class="stat-label">Subjects</div>
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon" style="background: rgba(245, 158, 11, 0.15);">🔥</div>
+                    <div class="stat-icon" style="background: rgba(245, 158, 11, 0.12);">🔥</div>
                     <div>
                         <div class="stat-value" style="color: var(--accent-gold);">5</div>
                         <div class="stat-label">Day Streak</div>
@@ -55,77 +53,74 @@
             </div>
 
             <!-- Two Column Layout -->
-            <div style="display: grid; grid-template-columns: 1fr 380px; gap: var(--spacing-lg); align-items: start;">
+            <div class="dashboard-grid" style="display: grid; grid-template-columns: 1fr 360px; gap: var(--spacing-lg); align-items: start; animation: fadeInUp 0.5s ease 0.2s both;">
 
-                <!-- LEFT: Curriculum Hero + Mastery Matrix -->
+                <!-- LEFT -->
                 <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
-
-                    <!-- Active Subject Tracker -->
-                    <div class="card" style="padding: 32px; display: flex; align-items: center; gap: 32px;">
-                        <div style="position: relative; width: 120px; height: 120px; flex-shrink: 0;">
+                    <!-- Active Subject Hero -->
+                    <div class="card" style="padding: 28px; display: flex; align-items: center; gap: 28px;">
+                        <div style="position: relative; width: 100px; height: 100px; flex-shrink: 0;">
                             <svg viewBox="0 0 36 36" style="transform: rotate(-90deg); width: 100%; height: 100%;">
-                                <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2.5"/>
+                                <circle cx="18" cy="18" r="15.9" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2.5"/>
                                 <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--accent-primary)" stroke-width="2.5" id="hero-ring" stroke-dasharray="0, 100" stroke-linecap="round" style="transition: stroke-dasharray 1s ease;"/>
                             </svg>
-                            <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 700;" id="hero-pct">—</span>
+                            <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800;" id="hero-pct">—</span>
                         </div>
-                        <div style="flex: 1;">
-                            <p style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px;">Currently Studying</p>
-                            <h2 style="margin-bottom: 6px;" id="hero-subject">—</h2>
-                            <p style="font-size: 0.85rem; margin-bottom: 16px;" id="hero-detail">Loading curriculum data...</p>
-                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                <a href="learn.html" class="btn btn-primary" style="padding: 10px 24px;">▶ Jump Back In</a>
-                                <a href="mission-control.html" class="btn btn-glass" style="padding: 10px 24px;">📚 Full Syllabus</a>
+                        <div style="flex: 1; min-width: 0;">
+                            <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 3px;">Currently Studying</p>
+                            <h2 style="margin-bottom: 4px; font-size: 1.3rem;" id="hero-subject">—</h2>
+                            <p style="font-size: 0.82rem; margin-bottom: 14px; color: var(--text-secondary);" id="hero-detail">Loading curriculum data...</p>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <a href="learn.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 13px;">▶ Jump Back In</a>
+                                <a href="mission-control.html" class="btn btn-glass" style="padding: 8px 20px; font-size: 13px;">📚 Full Syllabus</a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Mastery Matrix -->
-                    <div class="card" style="padding: 2rem;">
-                        <h3 style="margin-bottom: 20px;">🗺️ Mastery Matrix</h3>
+                    <div class="card" style="padding: 24px;">
+                        <h3 style="margin-bottom: 18px; font-size: 1rem;">🗺️ Mastery Matrix</h3>
                         <div id="mastery-matrix" class="mastery-matrix"></div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.05);">
-                            <p style="font-size: 0.75rem; color: #64748b;" id="heatmap-summary">Loading...</p>
-                            <div style="display: flex; gap: 16px; align-items: center; font-size: 0.7rem; color: #64748b;">
-                                <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot" style="background: var(--accent-teal);"></span>Mastered</span>
-                                <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot" style="background: var(--accent-primary);"></span>In Progress</span>
-                                <span style="display: flex; align-items: center; gap: 5px;"><span class="legend-dot" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.06);"></span>Not Started</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.04);">
+                            <p style="font-size: 0.72rem; color: var(--text-muted);" id="heatmap-summary">Loading...</p>
+                            <div style="display: flex; gap: 14px; align-items: center; font-size: 0.68rem; color: var(--text-muted);">
+                                <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: var(--accent-teal);"></span>Mastered</span>
+                                <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: var(--accent-primary);"></span>In Progress</span>
+                                <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.04);"></span>Not Started</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- RIGHT: Daily Mix + Focus + Upload -->
+                <!-- RIGHT -->
                 <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
-
                     <!-- Daily Review Mix -->
-                    <div class="card" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));">
-                        <h4 style="margin-bottom: 10px;">📅 Daily Review Mix</h4>
-                        <div id="daily-mix-list" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;"></div>
-                        <a href="learn.html" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 10px;">Start Review</a>
+                    <div class="card" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(139, 92, 246, 0.06));">
+                        <h4 style="margin-bottom: 10px; font-size: 0.95rem;">📅 Daily Review Mix</h4>
+                        <div id="daily-mix-list" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;"></div>
+                        <a href="learn.html" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 9px; font-size: 13px;">Start Review</a>
                     </div>
 
                     <!-- Focus Areas -->
                     <div class="card">
-                        <h4 style="margin-bottom: 12px;">🎯 Focus Areas</h4>
-                        <p style="font-size: 0.8rem; margin-bottom: 12px;">Topics below the 80% mastery gate.</p>
-                        <div id="focus-areas" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+                        <h4 style="margin-bottom: 10px; font-size: 0.95rem;">🎯 Focus Areas</h4>
+                        <p style="font-size: 0.78rem; margin-bottom: 10px; color: var(--text-muted);">Topics below the 80% mastery gate.</p>
+                        <div id="focus-areas" style="display: flex; flex-wrap: wrap; gap: 6px;"></div>
                     </div>
 
                     <!-- Quick Upload -->
                     <div class="card">
-                        <h4 style="margin-bottom: 14px;">📥 Quick Upload</h4>
-                        <div style="border: 2px dashed rgba(255,255,255,0.1); border-radius: 14px; padding: 28px 20px; text-align: center; cursor: pointer; transition: border-color 0.3s, background 0.3s;" id="drop-zone">
-                            <div style="font-size: 2.5rem; margin-bottom: 10px;">📄</div>
-                            <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Drop your lecture notes here</h4>
-                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">Supports PDF, PPT, and Images</p>
-                            <button class="btn btn-primary" style="padding: 10px 28px;" id="browse-btn">Browse Files</button>
-                            <input type="file" id="file-input" accept=".pdf,.ppt,.pptx,.png,.jpg,.jpeg" multiple style="display: none;">
+                        <h4 style="margin-bottom: 12px; font-size: 0.95rem;">📥 Quick Upload</h4>
+                        <div style="border: 2px dashed rgba(255,255,255,0.08); border-radius: 14px; padding: 24px 16px; text-align: center; cursor: pointer; transition: all 0.2s ease;" id="drop-zone">
+                            <div style="font-size: 2rem; margin-bottom: 8px;">📄</div>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 4px;">Drop your lecture notes here</h4>
+                            <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">Supports PDF, PPT, and Images</p>
+                            <button class="btn btn-primary" style="padding: 8px 24px; font-size: 13px;" id="browse-btn">Browse Files</button>
+                            <input type="file" id="file-input" accept=".pdf,.ppt,.pptx,.png,.jpg,.jpeg" multiple style="display: none;" aria-label="Upload lecture files">
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

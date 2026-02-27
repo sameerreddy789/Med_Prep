@@ -3,48 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MedVoice Mission Control - Manage your profile, syllabus, and track achievements.">
+    <meta name="description" content="MedVoice Mission Control — Manage your profile, syllabus, and track achievements.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
     <title>Mission Control | MedVoice</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar injected by JS -->
         <div class="main-content">
-
-            <!-- Page Header -->
-            <div class="page-header">
+            <!-- Header -->
+            <div class="page-header" style="animation: fadeIn 0.4s ease;">
                 <div>
                     <h1>Mission Control 🎯</h1>
-                    <p class="page-subtitle">Your academic identity, syllabus roadmap, and achievements — all in one place.</p>
+                    <p class="page-subtitle">Your academic identity, syllabus roadmap, and achievements.</p>
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 320px 1fr; gap: 2rem;">
+            <div class="mission-grid" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; animation: fadeInUp 0.5s ease 0.1s both;">
 
-                <!-- LEFT: Identity & Stats -->
-                <div style="display: flex; flex-direction: column; gap: 20px;">
-
-                    <!-- Profile Card -->
-                    <div class="card" style="text-align: center; padding: 28px 20px;">
-                        <div style="width: 88px; height: 88px; border-radius: 50%; background: var(--gradient-primary); margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 0 25px rgba(59, 130, 246, 0.3);">🩺</div>
-                        <h2 style="margin-bottom: 4px;" id="profile-name">Dr. Future</h2>
-                        <p style="font-size: 0.85rem; margin-bottom: 14px;" id="profile-school">2nd Year MBBS</p>
-                        <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px;">
+                <!-- LEFT: Identity -->
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <!-- Profile -->
+                    <div class="card" style="text-align: center; padding: 24px 18px;">
+                        <div style="width: 76px; height: 76px; border-radius: 50%; background: var(--gradient-primary); margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 0 20px rgba(45, 212, 191, 0.2);">🩺</div>
+                        <h2 style="margin-bottom: 3px; font-size: 1.2rem;" id="profile-name">Dr. Future</h2>
+                        <p style="font-size: 0.82rem; margin-bottom: 12px;" id="profile-school">2nd Year MBBS</p>
+                        <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px;">
                             <span class="status-badge in-progress">🌐 Hinglish</span>
                             <span class="status-badge mastered">📅 5-Day Streak</span>
                         </div>
-                        <button class="btn btn-glass" style="width: 100%; justify-content: center;" onclick="toggleEditProfile()">✏️ Edit Profile</button>
+                        <button class="btn btn-glass" style="width: 100%; justify-content: center; font-size: 13px;" onclick="toggleEditProfile()">✏️ Edit Profile</button>
 
-                        <!-- Edit Form -->
-                        <div id="edit-profile-form" style="display: none; margin-top: 20px; text-align: left;">
-                            <div style="margin-bottom: 12px;">
+                        <div id="edit-profile-form" style="display: none; margin-top: 18px; text-align: left;">
+                            <div style="margin-bottom: 10px;">
                                 <label for="input-name" class="form-label">Name</label>
                                 <input type="text" id="input-name" value="Dr. Future" class="form-input">
                             </div>
-                            <div style="margin-bottom: 12px;">
+                            <div style="margin-bottom: 10px;">
                                 <label for="input-year" class="form-label">Year of Study</label>
                                 <select id="input-year" class="form-select">
                                     <option>1st Year MBBS</option>
@@ -53,7 +49,7 @@
                                     <option>Final Year MBBS</option>
                                 </select>
                             </div>
-                            <div style="margin-bottom: 16px;">
+                            <div style="margin-bottom: 14px;">
                                 <label for="input-language" class="form-label">Preferred Language</label>
                                 <select id="input-language" class="form-select">
                                     <option selected>Hinglish</option>
@@ -62,87 +58,87 @@
                                     <option>Tanglish</option>
                                 </select>
                             </div>
-                            <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="saveProfile()">💾 Save Changes</button>
+                            <button class="btn btn-primary" style="width: 100%; justify-content: center; font-size: 13px;" onclick="saveProfile()">💾 Save Changes</button>
                         </div>
                     </div>
 
                     <!-- Quick Stats -->
                     <div class="card">
-                        <h4 style="margin-bottom: 14px;">📊 Overview</h4>
-                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <h4 style="margin-bottom: 12px; font-size: 0.9rem;">📊 Overview</h4>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="font-size: 0.85rem; color: var(--text-secondary);">Topics Mastered</span>
-                                <span style="font-weight: 700; color: var(--accent-green);" data-stat="mastered">— / —</span>
+                                <span style="font-size: 0.82rem; color: var(--text-secondary);">Topics Mastered</span>
+                                <span style="font-weight: 700; color: var(--accent-green); font-size: 0.85rem;" data-stat="mastered">— / —</span>
                             </div>
-                            <div class="progress-bar-bg" style="height: 8px;">
+                            <div class="progress-bar-bg" style="height: 6px;">
                                 <div class="progress-bar-fill" data-stat="progress" style="width: 0%;"></div>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-                                <span style="font-size: 0.85rem; color: var(--text-secondary);">Subjects Active</span>
-                                <span style="font-weight: 700;" data-stat="subjects">—</span>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+                                <span style="font-size: 0.82rem; color: var(--text-secondary);">Subjects Active</span>
+                                <span style="font-weight: 700; font-size: 0.85rem;" data-stat="subjects">—</span>
                             </div>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="font-size: 0.85rem; color: var(--text-secondary);">Best Streak</span>
-                                <span style="font-weight: 700; color: var(--accent-gold);">🔥 12 Days</span>
+                                <span style="font-size: 0.82rem; color: var(--text-secondary);">Best Streak</span>
+                                <span style="font-weight: 700; color: var(--accent-gold); font-size: 0.85rem;">🔥 12 Days</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Achievements -->
                     <div class="card">
-                        <h4 style="margin-bottom: 14px;">🏆 Achievements</h4>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            <div title="Completed Upper Limb" style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1)); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">💪</div>
-                            <div title="5-Day Streak" style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.1)); border: 1px solid rgba(249, 115, 22, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">🔥</div>
-                            <div title="First Quiz Passed" style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.1)); border: 1px solid rgba(59, 130, 246, 0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; cursor: pointer; transition: transform 0.2s;">🎯</div>
-                            <div title="Thorax Master (Locked)" style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; opacity: 0.3;">🫀</div>
-                            <div title="100 Topics (Locked)" style="width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; opacity: 0.3;">💯</div>
+                        <h4 style="margin-bottom: 12px; font-size: 0.9rem;">🏆 Achievements</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            <div title="Completed Upper Limb" style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.08)); border: 1px solid rgba(16, 185, 129, 0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: transform 0.2s;" role="img" aria-label="Completed Upper Limb">💪</div>
+                            <div title="5-Day Streak" style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(234, 88, 12, 0.08)); border: 1px solid rgba(249, 115, 22, 0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: transform 0.2s;" role="img" aria-label="5-Day Streak">🔥</div>
+                            <div title="First Quiz Passed" style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(37, 99, 235, 0.08)); border: 1px solid rgba(59, 130, 246, 0.25); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: transform 0.2s;" role="img" aria-label="First Quiz Passed">🎯</div>
+                            <div title="Thorax Master (Locked)" style="width: 44px; height: 44px; border-radius: 10px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; opacity: 0.25;" role="img" aria-label="Thorax Master - Locked">🫀</div>
+                            <div title="100 Topics (Locked)" style="width: 44px; height: 44px; border-radius: 10px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; opacity: 0.25;" role="img" aria-label="100 Topics - Locked">💯</div>
                         </div>
                     </div>
 
-                    <button class="btn btn-danger" style="width: 100%; justify-content: center;" onclick="window.resetMedVoiceData()">🗑️ Reset All Data</button>
+                    <button class="btn btn-danger" style="width: 100%; justify-content: center; font-size: 13px;" onclick="window.resetMedVoiceData()">🗑️ Reset All Data</button>
                 </div>
 
                 <!-- RIGHT: Syllabus -->
-                <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; flex-direction: column; gap: 16px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h2>📚 My Syllabus</h2>
-                        <button class="btn btn-primary" onclick="openModal()" style="padding: 10px 24px;">+ Add Subject</button>
+                        <h2 style="font-size: 1.2rem;">📚 My Syllabus</h2>
+                        <button class="btn btn-primary" onclick="openModal()" style="padding: 8px 20px; font-size: 13px;">+ Add Subject</button>
                     </div>
-                    <div id="syllabus-tree" style="display: flex; flex-direction: column; gap: 16px;"></div>
+                    <div id="syllabus-tree" style="display: flex; flex-direction: column; gap: 12px;"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Subject Modal -->
-    <div id="subject-modal" style="display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center;">
-        <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 32px; width: 90%; max-width: 560px; box-shadow: 0 24px 80px rgba(0,0,0,0.5); position: relative;">
-            <button onclick="closeModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-secondary); font-size: 1.3rem; cursor: pointer;">✕</button>
-            <h2 style="margin-bottom: 4px;">🧪 Subject Ingestion Hub</h2>
-            <p style="font-size: 0.85rem; margin-bottom: 24px;">Add a new subject manually or paste your entire syllabus for AI parsing.</p>
-            <div style="display: flex; gap: 8px; margin-bottom: 20px;" id="modal-tabs">
+    <div id="subject-modal" style="display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center;" role="dialog" aria-modal="true" aria-label="Add Subject">
+        <div style="background: rgba(12, 18, 35, 0.96); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 28px; width: 90%; max-width: 520px; box-shadow: 0 24px 80px rgba(0,0,0,0.5); position: relative;">
+            <button onclick="closeModal()" style="position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; padding: 4px;" aria-label="Close modal">✕</button>
+            <h2 style="margin-bottom: 3px; font-size: 1.15rem;">🧪 Subject Ingestion Hub</h2>
+            <p style="font-size: 0.82rem; margin-bottom: 20px; color: var(--text-secondary);">Add a new subject manually or paste your entire syllabus for AI parsing.</p>
+            <div style="display: flex; gap: 6px; margin-bottom: 18px;" id="modal-tabs">
                 <button class="modal-tab active" onclick="switchTab('manual')" id="tab-manual">Manual Entry</button>
                 <button class="modal-tab" onclick="switchTab('bulk')" id="tab-bulk">📋 Bulk Ingest</button>
             </div>
             <div id="panel-manual">
-                <div style="margin-bottom: 14px;">
+                <div style="margin-bottom: 12px;">
                     <label for="modal-subject-name" class="form-label">Subject Name</label>
                     <input type="text" id="modal-subject-name" placeholder="e.g., Pharmacology" class="form-input">
                 </div>
-                <div style="margin-bottom: 14px;">
+                <div style="margin-bottom: 12px;">
                     <label for="modal-units" class="form-label">Units <span style="color: var(--text-muted); text-transform: none;">(comma-separated)</span></label>
                     <input type="text" id="modal-units" placeholder="e.g., General Pharmacology, ANS, CVS" class="form-input">
                 </div>
-                <p id="modal-error" style="color: #fca5a5; font-size: 0.8rem; margin-bottom: 12px; display: none;"></p>
-                <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="submitManualSubject()">Add to Curriculum</button>
+                <p id="modal-error" style="color: #fca5a5; font-size: 0.78rem; margin-bottom: 10px; display: none;"></p>
+                <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 10px; font-size: 13px;" onclick="submitManualSubject()">Add to Curriculum</button>
             </div>
             <div id="panel-bulk" style="display: none;">
-                <div style="margin-bottom: 14px;">
+                <div style="margin-bottom: 12px;">
                     <label for="modal-bulk-text" class="form-label">Paste Raw Syllabus</label>
-                    <textarea id="modal-bulk-text" placeholder="Anatomy&#10;  Unit 1: Upper Limb&#10;    - Brachial Plexus&#10;    - Axillary Artery" style="width: 100%; height: 160px; padding: 12px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; font-family: inherit; font-size: 0.85rem; resize: vertical; box-sizing: border-box;"></textarea>
+                    <textarea id="modal-bulk-text" placeholder="Anatomy&#10;  Unit 1: Upper Limb&#10;    - Brachial Plexus&#10;    - Axillary Artery" style="width: 100%; height: 140px; padding: 11px; background: rgba(6,11,24,0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; color: white; font-family: inherit; font-size: 0.82rem; resize: vertical; box-sizing: border-box;" aria-label="Paste syllabus text"></textarea>
                 </div>
-                <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="submitBulkIngest()">🧠 AI Parse & Add</button>
+                <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 10px; font-size: 13px;" onclick="submitBulkIngest()">🧠 AI Parse & Add</button>
             </div>
         </div>
     </div>
