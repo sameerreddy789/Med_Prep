@@ -45,21 +45,26 @@
     ```bash
     MedVoice/
     ├── css/
-    │   └── styles.css           # Core styles, variables, and glassmorphism utilities
+    │   └── styles.css            # Core styles, variables, and glassmorphism utilities
     ├── js/
-    │   ├── main.js              # Main entry point
-    │   ├── state-manager.js     # User session and progress management
-    │   ├── audio-player.js      # Audio playback logic
-    │   ├── ai-service.js        # AI service layer (Gemini API / Mocks)
-    │   ├── clinical-simulator.js# Clinical case simulation logic
-    │   ├── learn-studio.js      # Study studio interaction logic
-    │   ├── prompt-templates.js  # AI prompt templates
-    │   └── concept-map.js       # Concept map rendering (Mermaid/D3)
-    ├── dashboard.html           # Dashboard (Upload, Weakness Radar, Daily Mix)
-    ├── learn.html               # Study Interface (Map + Audio)
-    ├── clinical-sim.html        # Exam/Clinical Simulation Interface
-    ├── mission-control.html     # Profile, Syllabus & Achievements
-    └── README.md                # You are here
+    │   ├── main.js               # Main entry point, seed data, toast system, theme toggle
+    │   ├── state-manager.js      # User session and progress management (ES module)
+    │   ├── audio-player.js       # Audio playback module (SpeechSynthesis wrapper)
+    │   ├── ai-service.js         # AI service layer (Gemini API / Mocks)
+    │   ├── clinical-simulator.js # Clinical case simulation logic
+    │   ├── learn-studio.js       # Study studio interaction logic
+    │   ├── prompt-templates.js   # AI prompt templates
+    │   ├── concept-map.js        # Concept map rendering (Mermaid.js)
+    │   ├── sidebar.js            # Shared sidebar navigation component
+    │   ├── dashboard.js          # Dashboard page logic
+    │   └── mission-control.js    # Mission Control page logic (syllabus, profile)
+    ├── index.html                # Landing page / entry point
+    ├── dashboard.html            # Dashboard (Upload, Weakness Radar, Daily Mix)
+    ├── learn.html                # Study Interface (Map + Audio)
+    ├── clinical-sim.html         # Exam/Clinical Simulation Interface
+    ├── mission-control.html      # Profile, Syllabus & Achievements
+    ├── 404.html                  # Error page
+    └── README.md                 # You are here
     ```
 
     ---
